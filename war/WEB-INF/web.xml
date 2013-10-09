@@ -12,6 +12,43 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-name>Movin_Nantes</servlet-name>
 		<url-pattern>/movin_nantes</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Home_Non_Connected</servlet-name>
+		<servlet-class>movinnantes.HomeNonConnectedServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Home_Non_Connected</servlet-name>
+		<url-pattern>/home_non_connected</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Home_Connected</servlet-name>
+		<servlet-class>movinnantes.HomeConnectedServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Home_Connected</servlet-name>
+		<url-pattern>/home_connected</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Event_List</servlet-name>
+		<servlet-class>movinnantes.EventListServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Event_List</servlet-name>
+		<url-pattern>/event_list</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Profile</servlet-name>
+		<servlet-class>movinnantes.ProfileServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Profile</servlet-name>
+		<url-pattern>/profile</url-pattern>
+	</servlet-mapping>
+
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
