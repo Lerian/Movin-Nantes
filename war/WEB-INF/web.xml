@@ -14,24 +14,6 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	</servlet-mapping>
 	
 	<servlet>
-		<servlet-name>Home_Non_Connected</servlet-name>
-		<servlet-class>movinnantes.HomeNonConnectedServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Home_Non_Connected</servlet-name>
-		<url-pattern>/home_non_connected</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
-		<servlet-name>Home_Connected</servlet-name>
-		<servlet-class>movinnantes.HomeConnectedServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Home_Connected</servlet-name>
-		<url-pattern>/home_connected</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
 		<servlet-name>Event_List</servlet-name>
 		<servlet-class>movinnantes.EventListServlet</servlet-class>
 	</servlet>
