@@ -6,38 +6,65 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <html>
-  <body>
-  
-  	<a href="home.jsp">
-  		<img src="banner.jpg" alt="La bannière devrait apparaître ici" title="Movin'Nantes, un site qu'il est bien pour organiser une rencontre sportive!" />
-  	</a>
-  	
-  	<p>Une description du site devra apparaître ici.</p>
-  	
-  	<%-- Checking if the user is logged in or not --%>
-	<%
-	    UserService userService = UserServiceFactory.getUserService();
-	    User user = userService.getCurrentUser();
-	    if (user != null) {
-	      pageContext.setAttribute("user", user);
-	%>
-	
-	<%-- The user is logged in --%>
-	<p>Hello, ${fn:escapeXml(user.nickname)}! (You can
-	<a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">sign out</a>.)</p>
-	<%
-	    } else {
-	%>
-	
-	<%-- The user isn't logged in --%>
-	<p>
-		<a href="<%= userService.createLoginURL(request.getRequestURI()) %>">
-			<button type="button">Sign in with a Google account</button>
+	<head>
+		<link rel="stylesheet" type="text/css" href="style.css" />
+	</head>
+	<body>
+	  
+	  	<%-- The site's banner --%>
+		<a href="home.jsp">
+			<img class="banner" src="banner.jpg" alt="La bannière devrait apparaître ici" title="Movin'Nantes, un site qu'il est bien pour organiser une rencontre sportive!" />
 		</a>
-	</p>
-	<%
-	    }
-	%>
-
-  </body>
+		  	
+		<%-- Checking if the user is logged in or not --%>
+		<%
+		UserService userService = UserServiceFactory.getUserService();
+		User user = userService.getCurrentUser();
+		if (user != null) {
+			pageContext.setAttribute("user", user);
+			%>
+				
+			<%-- The user is logged in --%>
+			<p>
+				<a href="profile">
+					<button type="button">Edit your profile</button>
+				</a>
+				<br/>
+				<a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">
+					<button type="button">Sign out</button>
+				</a>
+			</p>
+			<div id="myEvents">
+				<p>La liste des events organisés par l'utilisateur apparaîtra ici.</p>
+			</div>
+			<div id="myInscriptions">
+				<p>La liste des events où l'utilisateur est inscrit apparaîtra ici.</p>
+			</div>
+				
+			<%
+		} else {
+			%>
+			
+			<%-- The user isn't logged in --%>
+			
+			<%-- The site's description --%>
+			<p>
+				<a href="<%= userService.createLoginURL(request.getRequestURI()) %>">
+					<button type="button">Sign in with a Google account</button>
+				</a>
+			</p>
+			<div id="description">
+				<p>
+					Movin'Nantes permet en quelques clics d'organiser des rencontres sportives à Nantes.
+				</p>
+			</div>
+			<%
+		}
+		%>
+	
+		<div class="nextEvents">
+			<p>La liste des événements proches devra apparaître ici</p>
+		</div>
+	
+	</body>
 </html>

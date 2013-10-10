@@ -1,0 +1,39 @@
+#description
+{
+	position:relative;
+	float:left;
+	background-color:yellow; /*Pour la visualisation, en débug*/
+}
+
+.nextEvents
+{
+	position:relative;
+	float:right;
+	background-color:lightblue; /*Pour la visualisation, en débug*/
+}
+
+img
+{
+	max-width:100%;
+}
+
+.banner
+{
+	min-width:100%;
+}
+
+#myEvents
+{
+	position:relative;
+	float:left;
+	background-color:lightgreen; /*Pour la visualisation, en débug*/
+}
+
+#myInscriptions
+{
+	position:relative;
+	float:left;
+	background-color:blue; /*Pour la visualisation, en débug*/
+	margin-left:50px; /* test, éviter le hardcode pour le final */
+	margin-right:50px; /* test, éviter le hardcode pour le final */
+}
