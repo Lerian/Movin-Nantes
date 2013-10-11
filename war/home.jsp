@@ -13,7 +13,7 @@
 	  
 	  	<%-- The site's banner --%>
 		<a href="home.jsp">
-			<img class="banner" src="banner.jpg" alt="La bannière devrait apparaître ici" title="Movin'Nantes, un site qu'il est bien pour organiser une rencontre sportive!" />
+			<img class="banner" src="banner.png" alt="La bannière devrait apparaître ici" title="Movin'Nantes, un site qu'il est bien pour organiser une rencontre sportive!" />
 		</a>
 		  	
 		<%-- Checking if the user is logged in or not --%>
@@ -25,7 +25,7 @@
 			%>
 				
 			<%-- The user is logged in --%>
-			<p>
+			<div class="headerButtonArea">
 				<a href="profile">
 					<button type="button">Edit your profile</button>
 				</a>
@@ -33,12 +33,25 @@
 				<a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">
 					<button type="button">Sign out</button>
 				</a>
-			</p>
-			<div id="myEvents">
-				<p>La liste des events organisés par l'utilisateur apparaîtra ici.</p>
 			</div>
+			
+			<form name="createEvent" id="eventCreationArea" action="" method="get">
+			<fieldset>
+			<legend class="underlined">Créer un nouvel évènement:</legend>
+				Quoi : <input type="text" name="quoi"><br/>
+				Où : <input type="text" name="ou"><br/>
+				Quand : <input type="text" name="quand"><br/>
+				Places : <input type="text" name="places"><br/>
+				<input type="submit" value="Créer l'évènement">
+			</fieldset>
+			</form>
+			
+			<div id="myEvents">
+				<p>Mes évènements:</p>
+			</div>
+			
 			<div id="myInscriptions">
-				<p>La liste des events où l'utilisateur est inscrit apparaîtra ici.</p>
+				<p>Mes inscriptions:</p>
 			</div>
 				
 			<%
@@ -48,11 +61,11 @@
 			<%-- The user isn't logged in --%>
 			
 			<%-- The site's description --%>
-			<p>
+			<div class="headerButtonArea">
 				<a href="<%= userService.createLoginURL(request.getRequestURI()) %>">
 					<button type="button">Sign in with a Google account</button>
 				</a>
-			</p>
+			</div>
 			<div id="description">
 				<p>
 					Movin'Nantes permet en quelques clics d'organiser des rencontres sportives à Nantes.
@@ -63,8 +76,13 @@
 		%>
 	
 		<div class="nextEvents">
-			<p>La liste des événements proches devra apparaître ici</p>
+			<p>Prochains évènements:</p>
 		</div>
+	
+		<!-- Javascript section
+    	================================================== -->
+        <!-- Placed at the end of the document to quicken the page's loading time -->
+        
 	
 	</body>
 </html>

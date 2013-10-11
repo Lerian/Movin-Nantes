@@ -2,38 +2,73 @@
 {
 	position:relative;
 	float:left;
-	background-color:yellow; /*Pour la visualisation, en débug*/
+	border-style:solid;
+	border-width:2px;
+	border-radius: 10px;
 }
 
 .nextEvents
 {
 	position:relative;
 	float:right;
-	background-color:lightblue; /*Pour la visualisation, en débug*/
-}
-
-img
-{
-	max-width:100%;
+	width:33%;
+	border-style:solid;
+	border-width:2px;
+	border-radius: 10px;
 }
 
 .banner
 {
-	min-width:100%;
+	width:80%;
+	position:relative;
+	float:left;
 }
 
 #myEvents
 {
 	position:relative;
 	float:left;
-	background-color:lightgreen; /*Pour la visualisation, en débug*/
+	width:33%;
+	border-style:solid;
+	border-width:2px;
+	border-radius: 10px;
 }
 
 #myInscriptions
 {
 	position:relative;
 	float:left;
-	background-color:blue; /*Pour la visualisation, en débug*/
-	margin-left:50px; /* test, éviter le hardcode pour le final */
-	margin-right:50px; /* test, éviter le hardcode pour le final */
+	width:33%;
+	border-style:solid;
+	border-width:2px;
+	border-radius: 10px;
+}
+
+body
+{
+	background-color:#C3C7C4;
+}
+
+.headerButtonArea
+{
+	position:relative;
+	float:right;
+	width:19%;
+	border-style:solid;
+	border-width:2px;
+	border-radius: 10px;
+}
+
+#eventCreationArea
+{
+	/*border-style:solid;
+	border-width:2px;
+	border-radius: 10px;	A voir si on garde cette bordure ou le fieldset*/
+	position:relative;
+	clear:both;
+}
+
+.underlined
+{
+	text-decoration:underline;
 }
