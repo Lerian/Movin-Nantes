@@ -25,7 +25,7 @@
 			%>
 				
 			<%-- The user is logged in --%>
-			<div class="headerButtonArea">
+			<div class="headerButtonArea box">
 				<a href="profile">
 					<button type="button">Edit your profile</button>
 				</a>
@@ -35,7 +35,7 @@
 				</a>
 			</div>
 			
-			<form name="createEvent" id="eventCreationArea" action="" method="get">
+			<form name="createEvent" class="box" id="eventCreationArea" action="" method="get">
 			<fieldset>
 			<legend class="underlined">Créer un nouvel évènement:</legend>
 				Quoi : <input type="text" name="quoi"><br/>
@@ -46,11 +46,11 @@
 			</fieldset>
 			</form>
 			
-			<div id="myEvents">
+			<div id="myEvents" class="box">
 				<p>Mes évènements:</p>
 			</div>
 			
-			<div id="myInscriptions">
+			<div id="myInscriptions" class="box">
 				<p>Mes inscriptions:</p>
 			</div>
 				
@@ -61,12 +61,12 @@
 			<%-- The user isn't logged in --%>
 			
 			<%-- The site's description --%>
-			<div class="headerButtonArea">
+			<div class="headerButtonArea box">
 				<a href="<%= userService.createLoginURL(request.getRequestURI()) %>">
 					<button type="button">Sign in with a Google account</button>
 				</a>
 			</div>
-			<div id="description">
+			<div id="description" class="box">
 				<p>
 					Movin'Nantes permet en quelques clics d'organiser des rencontres sportives à Nantes.
 				</p>
@@ -75,7 +75,7 @@
 		}
 		%>
 	
-		<div class="nextEvents">
+		<div class="nextEvents box">
 			<p>Prochains évènements:</p>
 		</div>
 	

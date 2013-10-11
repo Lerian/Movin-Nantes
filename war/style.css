@@ -46,7 +46,7 @@
 
 body
 {
-	background-color:#C3C7C4;
+	background-color:#E5E5E5;
 }
 
 .headerButtonArea
@@ -71,4 +71,9 @@ body
 .underlined
 {
 	text-decoration:underline;
+}
+
+.box
+{
+	background-color:white;
 }
