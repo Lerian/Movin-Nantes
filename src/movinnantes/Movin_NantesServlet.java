@@ -8,6 +8,6 @@ public class Movin_NantesServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 		resp.setContentType("text/plain");
-		resp.getWriter().println("Coming soon");
+		resp.getWriter().println("Coming soon !!!");
 	}
 }

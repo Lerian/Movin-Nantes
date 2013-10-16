@@ -8,7 +8,7 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="style.css" />
-		<title>Moving'Nantes Home</title>
+		<title>Edit your profile</title>
 	</head>
 	<body>
 	  
@@ -27,32 +27,25 @@
 				
 			<%-- The user is logged in --%>
 			<div class="headerButtonArea box">
-				<a href="profile.jsp">
-					<button type="button">Edit your profile</button>
-				</a>
-				<br/>
 				<a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">
 					<button type="button">Sign out</button>
 				</a>
 			</div>
 			
-			<form name="createEvent" class="box" id="eventCreationArea" action="" method="get">
-			<fieldset>
-			<legend class="underlined">Créer un nouvel évènement:</legend>
-				Quoi : <input type="text" name="quoi"><br/>
-				Où : <input type="text" name="ou"><br/>
-				Quand : <input type="text" name="quand"><br/>
-				Places : <input type="text" name="places"><br/>
-				<input type="submit" value="Créer l'évènement">
-			</fieldset>
-			</form>
-			
-			<div id="myEvents" class="box">
-				<p>Mes évènements:</p>
+			<div id="myPlaces" class="editProperty">
+				<p>Mes lieux favoris :</p>
+				<input type="checkbox" name="lieux1" id="lieux1" /> <label for="lieux1">lieux1</label><br />
+				<input type="checkbox" name="lieux2" id="lieux2" /> <label for="lieux2">lieux2</label><br />
+				<input type="checkbox" name="lieux3" id="lieux3" /> <label for="lieux3">lieux3</label><br />
+				<input type="checkbox" name="lieux4" id="lieux4" /> <label for="lieux4">lieux4</label><br />
+				<input type="checkbox" name="lieux5" id="lieux5" /> <label for="lieux5">lieux5</label><br />
+				<input type="checkbox" name="lieux6" id="lieux6" /> <label for="lieux6">lieux6</label><br />
+				<input type="checkbox" name="lieux7" id="lieux7" /> <label for="lieux7">lieux7</label><br />
+				<input type="checkbox" name="lieux8" id="lieux8" /> <label for="lieux8">lieux8</label><br />
 			</div>
 			
-			<div id="myInscriptions" class="box">
-				<p>Mes inscriptions:</p>
+			<div id="mySports" class="editProperty">
+				<p>Mes sports :</p>
 			</div>
 				
 			<%
