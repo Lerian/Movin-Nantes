@@ -3,6 +3,15 @@
 <%@ page import="com.google.appengine.api.users.User" %>
 <%@ page import="com.google.appengine.api.users.UserService" %>
 <%@ page import="com.google.appengine.api.users.UserServiceFactory" %>
+<%@ page import="com.google.appengine.api.datastore.DatastoreService" %>
+<%@ page import="com.google.appengine.api.datastore.DatastoreServiceFactory" %>
+<%@ page import="com.google.appengine.api.datastore.Entity" %>
+<%@ page import="com.google.appengine.api.datastore.Key" %>
+<%@ page import="com.google.appengine.api.datastore.KeyFactory" %>
+<%@ page import="com.google.appengine.api.datastore.Query" %>
+<%@ page import="com.google.appengine.api.datastore.Query.FilterOperator" %>
+<%@ page import="com.google.appengine.api.datastore.PreparedQuery" %>
+
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <html>
@@ -26,6 +35,22 @@
 			%>
 				
 			<%-- The user is logged in --%>
+			<%-- Checks if the user is already in the datastore, put him in if not --%>
+			<%
+		    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+			
+			Query query = new Query("User");
+			query.addFilter("email", FilterOperator.EQUAL, user.getEmail());
+			PreparedQuery pq = datastore.prepare(query);
+			if (pq.asSingleEntity() == null) {
+				Key userKey = KeyFactory.createKey("User", user.getNickname());
+			    Entity userEntity = new Entity("User", userKey);
+			    userEntity.setProperty("name", user.getNickname());
+			    userEntity.setProperty("email", user.getEmail());
+			 
+			    datastore.put(userEntity); //save it
+			}
+			%>
 			<div class="headerButtonArea box">
 				<a href="profile.jsp">
 					<button type="button">Edit your profile</button>
