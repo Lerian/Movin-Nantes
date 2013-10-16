@@ -45,7 +45,6 @@
 			if (pq.asSingleEntity() == null) {
 				Key userKey = KeyFactory.createKey("User", user.getNickname());
 			    Entity userEntity = new Entity("User", userKey);
-			    userEntity.setProperty("name", user.getNickname());
 			    userEntity.setProperty("email", user.getEmail());
 			 
 			    datastore.put(userEntity); //save it

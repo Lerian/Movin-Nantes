@@ -54,17 +54,7 @@
 			
 			<%-- The user isn't logged in --%>
 			
-			<%-- The site's description --%>
-			<div class="headerButtonArea box">
-				<a href="<%= userService.createLoginURL(request.getRequestURI()) %>">
-					<button type="button">Sign in with a Google account</button>
-				</a>
-			</div>
-			<div id="description" class="box">
-				<p>
-					Movin'Nantes permet en quelques clics d'organiser des rencontres sportives à Nantes.
-				</p>
-			</div>
+			<% response.sendRedirect(userService.createLogoutURL("/home.jsp")); %>
 			<%
 		}
 		%>
