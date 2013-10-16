@@ -32,7 +32,7 @@
 				</a>
 			</div>
 			
-			<div id="myPlaces" class="editProperty">
+			<div id="myPlaces" class="editProperty box">
 				<p>Mes lieux favoris :</p>
 				<input type="checkbox" name="lieux1" id="lieux1" /> <label for="lieux1">lieux1</label><br />
 				<input type="checkbox" name="lieux2" id="lieux2" /> <label for="lieux2">lieux2</label><br />
@@ -44,7 +44,7 @@
 				<input type="checkbox" name="lieux8" id="lieux8" /> <label for="lieux8">lieux8</label><br />
 			</div>
 			
-			<div id="mySports" class="editProperty">
+			<div id="mySports" class="editProperty box">
 				<p>Mes sports :</p>
 			</div>
 				
