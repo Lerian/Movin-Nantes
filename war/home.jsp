@@ -17,26 +17,34 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="style.css" />
-		<title>Moving'Nantes Home</title>
+		<title>Moving'Nantes</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <meta name="description" content="">
+	    <meta name="author" content="">
+	
+	    <!-- Le styles -->
+	    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+	    <style type="text/css">
+	      body {
+	        padding-top: 100px;
+	        padding-bottom: 40px;
+	      }
+	      .sidebar-nav {
+	        padding: 9px 0;
+	      }
+	    </style>
+	    <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 	</head>
 	<body>
-	  
-	  	<%-- The site's banner --%>
-		<a href="home.jsp">
-			<img class="banner" src="banner.png" alt="La bannière devrait apparaître ici" title="Movin'Nantes, un site qu'il est bien pour organiser une rencontre sportive!" />
-		</a>
 		  	
 		<%-- Checking if the user is logged in or not --%>
+		<%-- 	If the result is positive, checks if the user is already in the datastore, put him in if not --%>
 		<%
 		UserService userService = UserServiceFactory.getUserService();
 		User user = userService.getCurrentUser();
 		if (user != null) {
 			pageContext.setAttribute("user", user);
-			%>
-				
-			<%-- The user is logged in --%>
-			<%-- Checks if the user is already in the datastore, put him in if not --%>
-			<%
+			
 		    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 			
 			Query query = new Query("User");
@@ -49,65 +57,103 @@
 			 
 			    datastore.put(userEntity); //save it
 			}
-			%>
-			<div class="headerButtonArea box">
-				<a href="profile.jsp">
-					<button type="button">Edit your profile</button>
-				</a>
-				<br/>
-				<a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">
-					<button type="button">Sign out</button>
-				</a>
-			</div>
-			
-			<form name="createEvent" class="box" id="eventCreationArea" action="" method="get">
-			<fieldset>
-			<legend class="underlined">Créer un nouvel évènement:</legend>
-				Quoi : <input type="text" name="quoi"><br/>
-				Où : <input type="text" name="ou"><br/>
-				Quand : <input type="text" name="quand"><br/>
-				Places : <input type="text" name="places"><br/>
-				<input type="submit" value="Créer l'évènement">
-			</fieldset>
-			</form>
-			
-			<div id="myEvents" class="box">
-				<p>Mes évènements:</p>
-			</div>
-			
-			<div id="myInscriptions" class="box">
-				<p>Mes inscriptions:</p>
-			</div>
-				
-			<%
-		} else {
-			%>
-			
-			<%-- The user isn't logged in --%>
-			
-			<%-- The site's description --%>
-			<div class="headerButtonArea box">
-				<a href="<%= userService.createLoginURL(request.getRequestURI()) %>">
-					<button type="button">Sign in with a Google account</button>
-				</a>
-			</div>
-			<div id="description" class="box">
-				<p>
-					Movin'Nantes permet en quelques clics d'organiser des rencontres sportives à Nantes.
-				</p>
-			</div>
-			<%
 		}
 		%>
-	
-		<div class="nextEvents box">
-			<p>Prochains évènements:</p>
+		
+		<%-- Constructing the top bar --%>
+		
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container-fluid">
+					<a class="brand" href="home.jsp"><h1>Movin'Nantes</h1></a>
+					<ul class="nav pull-right">
+					
+						<% if (user != null) { %>
+							<li class="divider-vertical"></li>
+							<li><a href="profile.jsp" class="btn btn-warning btn-small">Profil</a></li>
+							<li class="divider-vertical"></li>
+							<li>
+								<a href="<%= userService.createLogoutURL(request.getRequestURI()) %>" class="btn btn-danger btn-small">Déconnexion</a>
+							</li>
+						<% } else { %>
+							<li class="divider-vertical"></li>
+							<li>
+								<a href="<%= userService.createLoginURL(request.getRequestURI()) %>" class="btn btn-warning btn-small">Connexion</a>
+							</li>
+						<% } %>
+						
+					</ul>
+				</div>
+			</div>
 		</div>
-	
-		<!-- Javascript section
-    	================================================== -->
-        <!-- Placed at the end of the document to quicken the page's loading time -->
+		
+		<%-- Constructing the page content --%>
+		
+		<div class="container-fluid">
+      		<div class="row-fluid">
+      			<% if (user != null) { %>
+		        	<div class="span4 well">
+		            	<h2>Mes évènements :</h2>
+		            	<hr>
+		              	<p>bla<br>bla<br>bla</p>
+		              	<p><a href="#addeve" class="btn btn-info" data-toggle="modal">Ajouter un évènement &raquo;</a></p>
+		            </div>
+		            <div class="span4 well">
+		            	<h2>Mes inscriptions :</h2>
+		            	<hr>
+		              	<p>bla<br>bla<br>bla</p>
+		            </div>
+		        <% } else { %>
+		        	<div class="span4 well">
+		            	<h2>Présentation de l'appli</h2>
+		              	<p>bla bla bla</p>
+		            </div>
+		        <% } %>
+	            <div class="span4 well">
+	              	<h2>Prochains évènements :</h2>
+	              	<hr>
+	              	<p>bla<br>bla<br>bla</p>
+	        	</div>
+      		</div>
+      
+      		<%-- PopUp d'ajout d'évènement --%>
+      		
+        	<div class="modal hide fade" id="addeve" tabindex="-1">
+            	<div class="modal-header">
+                	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                	<h3>Ajout d'un évènement :</h3>
+            	</div>
+            	<div class="modal-body">
+                	<p>
+	                    <form>
+	                        <input type="text" placeholder="Sport">
+	                        <input type="text" placeholder="Lieu">
+	                        <input type="text" placeholder="Date">
+	                        <input type="text" placeholder="Nombre de place">
+	                        <input type="text" placeholder="Description">
+	                    </form>
+                	</p>
+            	</div>
+            	<div class="modal-footer">
+                	<a href="#" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Ajouter !</a>
+            	</div>
+        	</div>
         
-	
+      		<hr>
+
+			<%-- Footer --%>
+
+      		<footer>
+        		<p>&copy;Vincent RAVENEAU, Coraline MARIE, Quentin MORICEAU - M1 ALMA 2013</p>
+      		</footer>
+
+    	</div><!--/.fluid-container-->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="bootstrap/js/jquery.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+		
 	</body>
 </html>

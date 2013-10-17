@@ -1,42 +1,73 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<!-- The HTML 4.01 Transitional DOCTYPE declaration-->
-<!-- above set at the top of the file will set     -->
-<!-- the browser's rendering engine into           -->
-<!-- "Quirks Mode". Replacing this declaration     -->
-<!-- with a "Standards Mode" doctype is supported, -->
-<!-- but may lead to some differences in layout.   -->
-
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
     <title>Movin'Nantes</title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="bootstrap/css/bootstrap.css" type="text/css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 100px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
+    <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+
   </head>
 
   <body>
-  
-	<img src="banner.png" alt="La bannière devrait apparaître ici" title="Movin'Nantes, un site qu'il est bien pour organiser une rencontre sportive!" />
-    <h1>Welcome to Movin'Nantes !</h1>
-	
-    <table>
-      <tr>
-        <td colspan="2" style="font-weight:bold;">Projet de Master 1 ALMA par :</td>        
-      </tr>
-      <tr>
-        <td colspan="2">Quentin Moriceau, Coraline Marie et Vincent Raveneau</td>        
-      </tr>
-      <tr></tr>
-      <tr></tr>
-      <tr></tr>
-      <tr>
-        <td><a href="home.jsp">Movin'Nantes</a></td>
-      </tr>
-      <tr>
-        <td><a href="event_list">page liste des évenements programmés</a></td>
-      </tr>
-      <tr>
-        <td><a href="profile">page gestion de profil</a></td>
-      </tr>
-    </table>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="brand" href="index.html"><h1>Movin'Nantes<h1></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span9">
+          <div class="hero-unit">
+            <h2>Bienvenue sur Movin'Nantes</h2>
+            <p>Ici prochainement, plus d'informations sur une application qui va faire bouger !</p>
+            <p><a href="home.jsp" class="btn btn-success btn-large">Allons y ! &raquo;</a></p>
+          </div>
+        </div>
+          <div class="span3">
+            <div class="well">
+              Evenements
+              <ul class="nav nav-list">
+                <li><a href="#">Foot à 10</a></li>
+                <li><a href="#">Massage à 3</a></li>
+                <li><a href="#">Footing 15km</a></li>
+                <li><a href="#">Patinoire</a></li>
+              </ul>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+      <footer>
+        <p> &copy;Vincent RAVENEAU, Coraline MARIE, Quentin MORICEAU - M1 ALMA 2013</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="bootstrap/js/jquery.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+
   </body>
 </html>
+
