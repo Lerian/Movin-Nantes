@@ -27,7 +27,8 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
-          <a class="brand" href="index.html"><h1>Movin'Nantes<h1></a>
+          
+          <a class="brand" href="index.html"><h1><img id="logo" alt="logo" src="bootstrap/img/LogoMN.png"><span id="movin"> Movin'</span><span id="nantes">Nantes</span><h1></a>
           <ul class="nav pull-right">
             <li class="divider-vertical"></li>
             <li><a href="profile.html" class="btn btn-warning btn-small">Profile</a></li>
@@ -64,8 +65,8 @@
             <div class="modal-body">
                 <p>
                     <form>
-                        <input type="text" placeholder="Sport">
-                        <input type="text" placeholder="Lieu">
+                        <input id="sport" type="text" data-provide="typeahead" placeholder="Sport">
+                        <input id="lieu" type="text" data-provide="typeahead" placeholder="Lieu">
                         <input type="text" placeholder="Date">
                         <input type="text" placeholder="Nombre de place">
                         <input type="text" placeholder="Description">
@@ -80,7 +81,7 @@
       <hr>
 
       <footer>
-        <p>&copy;Vincent RAVENEAU, Coraline MARIE, Quentin MORICEAU - M1 ALMA 2013</p>
+        <p> &copy; Vincent RAVENEAU, Coraline MARIE, Quentin MORICEAU - M1 ALMA 2013</p>
       </footer>
 
     </div><!--/.fluid-container-->
@@ -90,6 +91,19 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="bootstrap/js/jquery.js"></script>
     <script src="bootstrap/js/bootstrap.js"></script>
+    <script>
+        $("#movin").css("color", "orange");
+        $("#nantes").css("color", "green");
+        $(".btn").css("color", "white");
+        $("#logo").css("height", "40px");
+        $(".typeahead").typeahead()
+        $(function (){
+          var deps = ['Football','Footing','Trollage','WiiFit'];
+          $('#sport').typeahead({source: deps});
+          var deps1 = ['Chambre','Salle de classe','Toilet','Cathédrale'];
+          $('#lieu').typeahead({source: deps1});
+        });
+    </script>
 
   </body>
 </html>

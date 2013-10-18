@@ -2,13 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Movin'Nantes</title>
+    <title>Test HTML Appli web</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
 
     <!-- Le styles -->
-    <link href="bootstrap/css/bootstrap.css" type="text/css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 100px;
@@ -27,7 +27,7 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
-          <a class="brand" href="index.html"><h1>Movin'Nantes<h1></a>
+          <a class="brand" href="index.html"><h1><span id="movin">Movin'</span><span id="nantes">Nantes</span><h1></a>
         </div>
       </div>
     </div>
@@ -36,9 +36,9 @@
       <div class="row-fluid">
         <div class="span9">
           <div class="hero-unit">
-            <h2>Bienvenue sur Movin'Nantes</h2>
-            <p>Ici prochainement, plus d'informations sur une application qui va faire bouger !</p>
-            <p><a href="home.jsp" class="btn btn-success btn-large">Allons y ! &raquo;</a></p>
+            <h2>Bienvenu sur Movin'Nantes</h2>
+            <p>Ici prochainement, plus d'information sur une application qui va faire bouger !</p>
+            <p><a href="home.html" class="btn btn-primary btn-large">Allons y ! &raquo;</a></p>
           </div>
         </div>
           <div class="span3">
@@ -57,7 +57,7 @@
       <hr>
 
       <footer>
-        <p> &copy;Vincent RAVENEAU, Coraline MARIE, Quentin MORICEAU - M1 ALMA 2013</p>
+        <p> &copy; Vincent RAVENEAU, Coraline MARIE, Quentin MORICEAU - M1 ALMA 2013</p>
       </footer>
 
     </div><!--/.fluid-container-->
@@ -67,6 +67,11 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="bootstrap/js/jquery.js"></script>
     <script src="bootstrap/js/bootstrap.js"></script>
+    <script>
+        $("#movin").css("color", "orange");
+        $("#nantes").css("color", "green");
+        $(".btn").css("color", "white");
+    </script>
 
   </body>
 </html>
