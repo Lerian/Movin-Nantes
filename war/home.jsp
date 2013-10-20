@@ -78,7 +78,7 @@
           <ul class="nav navbar-nav navbar-right">
 					
 			<% if (user != null) { %>
-			  <li><a href="profile.html" class="btn btn-warning btn-nav">Profile</a></li>
+			  <li><a href="profile.jsp" class="btn btn-warning btn-nav">Profile</a></li>
 			  <li>&nbsp;</li>
               <li><a href="<%= userService.createLogoutURL(request.getRequestURI()) %>" class="btn btn-danger btn-nav">Déconexion</a></li>
 			<% } else { %>
