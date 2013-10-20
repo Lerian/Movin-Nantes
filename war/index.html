@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Test HTML Appli web</title>
+    <title>Movin'Nantes</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -18,38 +18,44 @@
         padding: 9px 0;
       }
     </style>
-    <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap-theme.css" rel="stylesheet">
 
   </head>
 
   <body>
 
     <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="brand" href="index.html"><h1><span id="movin">Movin'</span><span id="nantes">Nantes</span><h1></a>
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html"><img id="logo" alt="logo" src="bootstrap/img/LogoMN.png"><span id="movin"> Movin'</span><span id="nantes">Nantes</span></a>
         </div>
       </div>
     </div>
 
-    <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span9">
-          <div class="hero-unit">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-9">
+          <div class="starter-template">
+		    <div class="page-header">
             <h2>Bienvenu sur Movin'Nantes</h2>
-            <p>Ici prochainement, plus d'information sur une application qui va faire bouger !</p>
-            <p><a href="home.html" class="btn btn-primary btn-large">Allons y ! &raquo;</a></p>
+			</div>
+            <p class="lead">Ici prochainement, plus d'information sur une application qui va faire bouger !</p>
+            <p><a href="home.html" class="btn btn-primary btn-lg">Allons y ! &raquo;</a></p>
           </div>
         </div>
-          <div class="span3">
-            <div class="well">
-              Evenements
+        <div class="col-sm-3">
+		  <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">Evenements</h3>
+            </div>
+            <div class="panel-body">
               <ul class="nav nav-list">
                 <li><a href="#">Foot à 10</a></li>
                 <li><a href="#">Massage à 3</a></li>
                 <li><a href="#">Footing 15km</a></li>
                 <li><a href="#">Patinoire</a></li>
               </ul>
+			</div>
           </div>
         </div>
       </div>
@@ -57,7 +63,7 @@
       <hr>
 
       <footer>
-        <p> &copy; Vincent RAVENEAU, Coraline MARIE, Quentin MORICEAU - M1 ALMA 2013</p>
+        <p>&copy; 2013 Vincent RAVENEAU, Coraline MARIE, Quentin MORICEAU - M1 ALMA <a href="http://www.univ-nantes.fr/">Université de Nantes</a></p>
       </footer>
 
     </div><!--/.fluid-container-->
@@ -71,8 +77,8 @@
         $("#movin").css("color", "orange");
         $("#nantes").css("color", "green");
         $(".btn").css("color", "white");
+		$("#logo").css("height", "40px");
     </script>
 
   </body>
 </html>
-

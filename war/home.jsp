@@ -33,7 +33,9 @@
 	        padding: 9px 0;
 	      }
 	    </style>
-	    <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+	    <link href="bootstrap/css/bootstrap-theme.css" rel="stylesheet">
+		<link href="bootstrap/css/datepicker.css" rel="stylesheet">
+		<link href="bootstrap/css/typeahead.css" rel="stylesheet">
 	</head>
 	<body>
 		  	
@@ -63,97 +65,157 @@
 		<%-- Constructing the top bar --%>
 		
 		<div class="navbar navbar-inverse navbar-fixed-top">
-			<div class="navbar-inner">
-				<div class="container-fluid">
-					<a class="brand" href="home.jsp"><h1>Movin'Nantes</h1></a>
-					<ul class="nav pull-right">
+      <div class="container">
+        <div class="navbar-header">
+		  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="home.html"><img id="logo" alt="logo" src="bootstrap/img/LogoMN.png"><span id="movin"> Movin'</span><span id="nantes">Nantes</span></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
 					
-						<% if (user != null) { %>
-							<li class="divider-vertical"></li>
-							<li><a href="profile.jsp" class="btn btn-warning btn-small">Profil</a></li>
-							<li class="divider-vertical"></li>
-							<li>
-								<a href="<%= userService.createLogoutURL(request.getRequestURI()) %>" class="btn btn-danger btn-small">Déconnexion</a>
-							</li>
-						<% } else { %>
-							<li class="divider-vertical"></li>
-							<li>
-								<a href="<%= userService.createLoginURL(request.getRequestURI()) %>" class="btn btn-warning btn-small">Connexion</a>
-							</li>
-						<% } %>
-						
-					</ul>
-				</div>
-			</div>
-		</div>
+			<% if (user != null) { %>
+			  <li><a href="profile.html" class="btn btn-warning btn-nav">Profile</a></li>
+			  <li>&nbsp;</li>
+              <li><a href="<%= userService.createLogoutURL(request.getRequestURI()) %>" class="btn btn-danger btn-nav">Déconexion</a></li>
+			<% } else { %>
+			  <li>
+				<a href="<%= userService.createLoginURL(request.getRequestURI()) %>" class="btn btn-success btn-nav">Connexion</a>
+			  </li>
+			<% } %>
+		  </ul>
+        </div>
+      </div>
+    </div>
 		
 		<%-- Constructing the page content --%>
 		
-		<div class="container-fluid">
-      		<div class="row-fluid">
+		<div class="container">
+			<div class="row">
       			<% if (user != null) { %>
-		        	<div class="span4 well">
-		            	<h2>Mes évènements :</h2>
-		            	<hr>
-		              	<p>bla<br>bla<br>bla</p>
-		              	<p><a href="#addeve" class="btn btn-info" data-toggle="modal">Ajouter un évènement &raquo;</a></p>
-		            </div>
-		            <div class="span4 well">
-		            	<h2>Mes inscriptions :</h2>
-		            	<hr>
-		              	<p>bla<br>bla<br>bla</p>
-		            </div>
+		        	<div class="col-sm-4">
+          			<div class="panel panel-info">
+            			<div class="panel-heading">
+              				<h3 class="panel-title">Mes évènements :</h3>
+            			</div>
+            			<div class="panel-body">
+              				<p>bla<br>bla<br>bla</p>
+              				<p><a data-toggle="modal" href="#myModal" class="btn btn-info">Créer un évènement &raquo;</a></p>
+            			</div>
+          			</div>
+					</div>
+		            <div class="col-sm-4">
+          			<div class="panel panel-success">
+            			<div class="panel-heading">
+              				<h3 class="panel-title">Mes inscriptions :</h3>
+            			</div>
+            			<div class="panel-body">
+              				<p>bla<br>bla<br>bla</p>
+            			</div>
+          			</div>
+        			</div>
 		        <% } else { %>
-		        	<div class="span4 well">
-		            	<h2>Présentation de l'appli</h2>
-		              	<p>bla bla bla</p>
-		            </div>
+		            <div class="col-sm-8">
+          			<div class="panel panel-success">
+            			<div class="panel-heading">
+              				<h3 class="panel-title">Présentation de l'appli</h3>
+            			</div>
+            			<div class="panel-body">
+              				<p>bla bla bla</p>
+            			</div>
+          			</div>
+        			</div>
 		        <% } %>
-	            <div class="span4 well">
-	              	<h2>Prochains évènements :</h2>
-	              	<hr>
-	              	<p>bla<br>bla<br>bla</p>
-	        	</div>
-      		</div>
+	            <div class="col-sm-4">
+          		<div class="panel panel-danger">
+            		<div class="panel-heading">
+              			<h3 class="panel-title">Prochains évènements :</h3>
+            		</div>
+            		<div class="panel-body">
+              			<p>bla<br>bla<br>bla</p>
+            		</div>
+          		</div>
+				</div>
+	  		</div>
       
-      		<%-- PopUp d'ajout d'évènement --%>
       		
-        	<div class="modal hide fade" id="addeve" tabindex="-1">
-            	<div class="modal-header">
-                	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                	<h3>Ajout d'un évènement :</h3>
-            	</div>
-            	<div class="modal-body">
-                	<p>
-	                    <form>
-	                        <input type="text" placeholder="Sport">
-	                        <input type="text" placeholder="Lieu">
-	                        <input type="text" placeholder="Date">
-	                        <input type="text" placeholder="Nombre de place">
-	                        <input type="text" placeholder="Description">
-	                    </form>
-                	</p>
-            	</div>
-            	<div class="modal-footer">
-                	<a href="#" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Ajouter !</a>
-            	</div>
-        	</div>
         
       		<hr>
 
 			<%-- Footer --%>
 
       		<footer>
-        		<p>&copy;Vincent RAVENEAU, Coraline MARIE, Quentin MORICEAU - M1 ALMA 2013</p>
+       			<p>&copy; 2013 Vincent RAVENEAU, Coraline MARIE, Quentin MORICEAU - M1 ALMA <a href="http://www.univ-nantes.fr/">Université de Nantes</a></p>
       		</footer>
 
     	</div><!--/.fluid-container-->
+    	
+    	<%-- PopUp d'ajout d'évènement --%>
+      		
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    		<div class="modal-dialog">
+      		<div class="modal-content">
+        		<div class="modal-header">
+          			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          			<h4 class="modal-title">Ajout d'un évènement :</h4>
+        		</div>
+        		<div class="modal-body">
+            		<form>
+						<div class="col-lg-6">
+                    	<input class="form-control" id="sport" type="text" placeholder="Sport">
+						</div>
+						<div class="col-lg-6">
+                    	<input class="form-control" id="lieu" type="text" placeholder="Lieu">
+						</div><br><br>
+						<div class="col-lg-6">
+                    	<input class="form-control" id="date" type="text" placeholder="Date">
+						</div>
+						<div class="col-lg-6">
+                    	<input class="form-control" type="text" placeholder="Nombre de place">
+						</div><br><br>
+						<textarea class="form-control" rows="3">Descriptif</textarea>
+            		</form>
+        		</div>
+        		<div class="modal-footer">
+          			<button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
+          			<button type="button" class="btn btn-primary">Ajouter !</button>
+        		</div>
+      		</div><!-- /.modal-content -->
+    		</div><!-- /.modal-dialog -->
+  		</div><!-- /.modal -->
 
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="bootstrap/js/jquery.js"></script>
     <script src="bootstrap/js/bootstrap.js"></script>
+	<script src="bootstrap/js/bootstrap-datepicker.js"></script>
+	<script src="bootstrap/js/typeahead.js"></script>
+    <script>
+        $("#movin").css("color", "orange");
+        $("#nantes").css("color", "green");
+        $(".btn").css("color", "white");
+		$(".btn-nav").css("margin-top", "9px");
+        $("#logo").css("height", "40px");
+		$('#date').datepicker({
+          format: "dd/mm/yyyy",
+          startDate: "today",
+          language: "fr",
+          orientation: "top left",
+          calendarWeeks: true
+        });
+		$('#sport').typeahead({
+		  name: 'sports',
+		  local: ['Footing', 'Football', 'Quiditch']
+		});
+		$('#lieu').typeahead({
+		  name: 'lieus',
+		  local: ['The moon', 'La petite amazonie', 'Tour de Bretagne']
+		});
+    </script>
 		
 	</body>
 </html>

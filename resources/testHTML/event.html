@@ -18,44 +18,62 @@
         padding: 9px 0;
       }
     </style>
-    <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap-theme.css" rel="stylesheet">
 
   </head>
 
   <body>
 
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="brand" href="home.html"><h1><span id="movin">Movin'</span><span id="nantes">Nantes</span><h1></a>
-          <ul class="nav pull-right">
-            <li class="divider-vertical"></li>
-            <li><a href="profile.html" class="btn btn-warning btn-small">Profile</a></li>
-            <li class="divider-vertical"></li>
-            <li><a href="index.html" class="btn btn-danger btn-small">Déconexion</a></li>
-          </ul>
+	
+	<div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+		  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="home.html"><img id="logo" alt="logo" src="bootstrap/img/LogoMN.png"><span id="movin"> Movin'</span><span id="nantes">Nantes</span></a>
         </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="profile.html" class="btn btn-warning btn-small btn-nav">Profile</a></li>
+			<li>&nbsp;</li>
+            <li><a href="index.html" class="btn btn-danger btn-small btn-nav">Déconexion</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
       </div>
     </div>
     
-    <div class="container-fluid">
-      <div class="row-fluid">
-            <div class="span7 well">
-              <legend>Evènement proposé par XXX :</legend>
+    <div class="container">
+	  <div class="row">
+        <div class="col-sm-8">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">Evènement proposé par XXX :</h3>
+            </div>
+            <div class="panel-body">
               <p>Sport : Football<br>Lieu : Hippodrome<br>Date : 17/10/2013 18h00<br>Place : 7/22<br>Description : Un petit foot 11v11 bien sympas.</p>
-              <a href="#" class="btn btn-success">S'inscrire</a>
-            </div><!--/span-->
-            <div class="span5 well">
-              <legend>Déjà inscrits :</legend>
+              <a href="#" class="btn btn-primary">S'inscrire</a>
+			</div>
+          </div>
+		</div>
+		<div class="col-sm-4">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Déjà inscrits :</h3>
+            </div>
+            <div class="panel-body">
               <p>Bertrand<br>Bernard<br>Baptiste<br>Belinda<br>Béatrice<br>Bastien<br>Bénédicte</p>
-            </div><!--/span-->
-        </div><!--/span-->
-      </div><!--/row-->
+            </div>
+          </div>
+        </div>
+	  </div>
         
       <hr>
 
       <footer>
-        <p> &copy; Vincent RAVENEAU, Coraline MARIE, Quentin MORICEAU - M1 ALMA 2013</p>
+        <p>&copy; 2013 Vincent RAVENEAU, Coraline MARIE, Quentin MORICEAU - M1 ALMA <a href="http://www.univ-nantes.fr/">Université de Nantes</a></p>
       </footer>
 
     </div><!--/.fluid-container-->
@@ -69,8 +87,9 @@
         $("#movin").css("color", "orange");
         $("#nantes").css("color", "green");
         $(".btn").css("color", "white");
+		$(".btn-nav").css("margin-top", "9px");
+		$("#logo").css("height", "40px");
     </script>
 
   </body>
 </html>
-

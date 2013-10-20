@@ -7,15 +7,47 @@
 
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="style.css" />
-		<title>Edit your profile</title>
-	</head>
+    <meta charset="utf-8">
+    <title>Editer votre profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 100px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
+    <link href="bootstrap/css/bootstrap-theme.css" rel="stylesheet">
+	<link href="bootstrap/css/typeahead.css" rel="stylesheet">
+
+  </head>
 	<body>
 	  
 	  	<%-- The site's banner --%>
-		<a href="home.jsp">
-			<img class="banner" src="banner.png" alt="La bannière devrait apparaître ici" title="Movin'Nantes, un site qu'il est bien pour organiser une rencontre sportive!" />
-		</a>
+		<div class="navbar navbar-inverse navbar-fixed-top">
+      		<div class="container">
+        	<div class="navbar-header">
+		  		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            	<span class="icon-bar"></span>
+            	<span class="icon-bar"></span>
+            	<span class="icon-bar"></span>
+          		</button>
+          		<a class="navbar-brand" href="home.html"><img id="logo" alt="logo" src="bootstrap/img/LogoMN.png"><span id="movin"> Movin'</span><span id="nantes">Nantes</span></a>
+        	</div>
+        	<div class="navbar-collapse collapse">
+          		<ul class="nav navbar-nav navbar-right">
+            		<li><a href="index.html" class="btn btn-danger btn-small btn-nav">Déconexion</a></li>
+          		</ul>
+        	</div><!--/.nav-collapse -->
+      	</div>
+    </div>
 		  	
 		<%-- Checking if the user is logged in or not --%>
 		<%
@@ -26,27 +58,48 @@
 			%>
 				
 			<%-- The user is logged in --%>
-			<div class="headerButtonArea box">
-				<a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">
-					<button type="button">Sign out</button>
-				</a>
-			</div>
-			
-			<div id="myPlaces" class="editProperty box">
-				<p>Mes lieux favoris :</p>
-				<input type="checkbox" name="lieux1" id="lieux1" /> <label for="lieux1">lieux1</label><br />
-				<input type="checkbox" name="lieux2" id="lieux2" /> <label for="lieux2">lieux2</label><br />
-				<input type="checkbox" name="lieux3" id="lieux3" /> <label for="lieux3">lieux3</label><br />
-				<input type="checkbox" name="lieux4" id="lieux4" /> <label for="lieux4">lieux4</label><br />
-				<input type="checkbox" name="lieux5" id="lieux5" /> <label for="lieux5">lieux5</label><br />
-				<input type="checkbox" name="lieux6" id="lieux6" /> <label for="lieux6">lieux6</label><br />
-				<input type="checkbox" name="lieux7" id="lieux7" /> <label for="lieux7">lieux7</label><br />
-				<input type="checkbox" name="lieux8" id="lieux8" /> <label for="lieux8">lieux8</label><br />
-			</div>
-			
-			<div id="mySports" class="editProperty box">
-				<p>Mes sports :</p>
-			</div>
+			<div class="container">
+      			<legend>Profile de XXX</legend>
+	  			<div class="row">
+        		<div class="col-sm-4">
+          			<div class="panel panel-info">
+            			<div class="panel-heading">
+              				<h3 class="panel-title">Mes lieux favoris :</h3>
+            			</div>
+            			<div class="panel-body">
+              				<p>bla<br>bla<br>bla</p>
+			  				<form class="form-inline" role="form">
+			    				<input class="form-control" id="lieu" type="text" placeholder="Lieu">
+			    				<button href="#" class="btn btn-info btn-nav">Ajouter</button>
+			  				</form>
+            			</div>
+          			</div>
+				</div>
+				<div class="col-sm-4">
+          			<div class="panel panel-success">
+           				 <div class="panel-heading">
+              				<h3 class="panel-title">Mes sports favoris :</h3>
+            			</div>
+            			<div class="panel-body">
+              				<p>bla<br>bla<br>bla</p>
+			  				<form class="form-inline" role="form">
+			    				<input class="form-control" id="sport" type="text" placeholder="Sport">
+			    				<button href="#" class="btn btn-success btn-nav">Ajouter</button>
+			  				</form>
+            			</div>
+          			</div>
+        		</div>
+        		<div class="col-sm-4">
+          			<div class="panel panel-danger">
+            			<div class="panel-heading">
+              				<h3 class="panel-title">Mes évènements et inscriptions :</h3>
+            			</div>
+            			<div class="panel-body">
+              				<p>bla<br>bla<br>bla</p>
+            			</div>
+          			</div>
+				</div>
+	  		</div>
 				
 			<%
 		} else {
@@ -59,14 +112,35 @@
 		}
 		%>
 	
-		<div class="nextEvents box">
-			<p>Prochains évènements:</p>
-		</div>
+		<hr>
+
+      <footer>
+        <p>&copy; 2013 Vincent RAVENEAU, Coraline MARIE, Quentin MORICEAU - M1 ALMA <a href="http://www.univ-nantes.fr/">Université de Nantes</a></p>
+      </footer>
+
+    </div>
 	
 		<!-- Javascript section
     	================================================== -->
         <!-- Placed at the end of the document to quicken the page's loading time -->
-        
+        <script src="bootstrap/js/jquery.js"></script>
+    	<script src="bootstrap/js/bootstrap.js"></script>
+		<script src="bootstrap/js/typeahead.js"></script>
+    	<script>
+        	$("#movin").css("color", "orange");
+        	$("#nantes").css("color", "green");
+        	$(".btn").css("color", "white");
+			$(".btn-nav").css("margin-top", "9px");
+			$("#logo").css("height", "40px");
+			$('#sport').typeahead({
+		  		name: 'sports',
+		  		local: ['Footing', 'Football', 'Quiditch']
+			});
+			$('#lieu').typeahead({
+		  		name: 'lieus',
+		  		local: ['The moon', 'La petite amazonie', 'Tour de Bretagne']
+			});
+    	</script>
 	
 	</body>
 </html>
