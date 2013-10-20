@@ -26,7 +26,7 @@
     </style>
     <link href="bootstrap/css/bootstrap-theme.css" rel="stylesheet">
 	<link href="bootstrap/css/typeahead.css" rel="stylesheet">
-
+	<%UserService userService = UserServiceFactory.getUserService(); %>
   </head>
 	<body>
 	  
@@ -51,7 +51,6 @@
 		  	
 		<%-- Checking if the user is logged in or not --%>
 		<%
-		UserService userService = UserServiceFactory.getUserService();
 		User user = userService.getCurrentUser();
 		if (user != null) {
 			pageContext.setAttribute("user", user);
