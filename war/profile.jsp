@@ -68,9 +68,12 @@
             			<div class="panel-body">
               				<p>bla<br>bla<br>bla</p>
 			  				<form class="form-inline" role="form">
-			    				<input class="form-control" id="lieu" type="text" placeholder="Lieu">
-			    				<button href="#" class="btn btn-info btn-nav">Ajouter</button>
-			  				</form>
+  								<div class="form-group">
+   					 				<label class="sr-only">Lieu</label>
+    								<input class="form-control" id="lieu" type="text" placeholder="Lieu">
+  								</div>
+  								<button type="submit" class="btn btn-info">Ajouter</button>
+							</form>
             			</div>
           			</div>
 				</div>
@@ -82,9 +85,12 @@
             			<div class="panel-body">
               				<p>bla<br>bla<br>bla</p>
 			  				<form class="form-inline" role="form">
-			    				<input class="form-control" id="sport" type="text" placeholder="Sport">
-			    				<button href="#" class="btn btn-success btn-nav">Ajouter</button>
-			  				</form>
+  								<div class="form-group">
+   					 				<label class="sr-only">Sport</label>
+    								<input class="form-control" id="sport" type="text" placeholder="Sport">
+  								</div>
+  								<button type="submit" class="btn btn-success">Ajouter</button>
+							</form>
             			</div>
           			</div>
         		</div>
