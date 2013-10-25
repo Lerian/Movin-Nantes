@@ -8,7 +8,7 @@
 <html>
 	<head>
     <meta charset="utf-8">
-    <title>Editer votre profile</title>
+    <title>Editer votre profil</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -43,7 +43,7 @@
         	</div>
         	<div class="navbar-collapse collapse">
           		<ul class="nav navbar-nav navbar-right">
-            		<li><a href="<%= userService.createLogoutURL(request.getRequestURI()) %>" class="btn btn-danger btn-small btn-nav">Déconexion</a></li>
+            		<li><a href="<%= userService.createLogoutURL("/index.jsp") %>" class="btn btn-danger btn-small btn-nav">Déconnexion</a></li>
           		</ul>
         	</div><!--/.nav-collapse -->
       	</div>
@@ -58,7 +58,7 @@
 				
 			<%-- The user is logged in --%>
 			<div class="container">
-      			<legend>Profile de XXX</legend>
+      			<legend>Profil de XXX</legend>
 	  			<div class="row">
         		<div class="col-sm-4">
           			<div class="panel panel-info">
@@ -112,7 +112,7 @@
 			
 			<%-- The user isn't logged in --%>
 			
-			<% response.sendRedirect(userService.createLogoutURL("/home.jsp")); %>
+			<% response.sendRedirect(userService.createLogoutURL("/index.jsp")); %>
 			<%
 		}
 		%>

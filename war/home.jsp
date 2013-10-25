@@ -17,7 +17,7 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="style.css" />
-		<title>Moving'Nantes</title>
+		<title>Movin'Nantes</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <meta name="description" content="">
 	    <meta name="author" content="">
@@ -39,7 +39,7 @@
 	</head>
 	<body>
 		  	
-		<%-- Checking if the user is logged in or not --%>
+		<%-- Checking if the user is logged in or not --%>		
 		<%-- 	If the result is positive, checks if the user is already in the datastore, put him in if not --%>
 		<%
 		UserService userService = UserServiceFactory.getUserService();
@@ -56,9 +56,13 @@
 				Key userKey = KeyFactory.createKey("User", user.getNickname());
 			    Entity userEntity = new Entity("User", userKey);
 			    userEntity.setProperty("email", user.getEmail());
-			 
+			 	userEntity.setProperty("places","");
+			 	userEntity.setProperty("sports","");
+			    
 			    datastore.put(userEntity); //save it
 			}
+		} else {
+			response.sendRedirect(userService.createLogoutURL("/index.jsp"));
 		}
 		%>
 		
@@ -76,16 +80,9 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-					
-			<% if (user != null) { %>
-			  <li><a href="profile.jsp" class="btn btn-warning btn-nav">Profile</a></li>
+			  <li><a href="profile.jsp" class="btn btn-warning btn-nav">Profil</a></li>
 			  <li>&nbsp;</li>
-              <li><a href="<%= userService.createLogoutURL(request.getRequestURI()) %>" class="btn btn-danger btn-nav">Déconexion</a></li>
-			<% } else { %>
-			  <li>
-				<a href="<%= userService.createLoginURL(request.getRequestURI()) %>" class="btn btn-success btn-nav">Connexion</a>
-			  </li>
-			<% } %>
+              <li><a href="<%= userService.createLogoutURL("/index.jsp") %>" class="btn btn-danger btn-nav">Déconnexion</a></li>
 		  </ul>
         </div>
       </div>
