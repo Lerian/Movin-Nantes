@@ -43,6 +43,8 @@
         	</div>
         	<div class="navbar-collapse collapse">
           		<ul class="nav navbar-nav navbar-right">
+          			<li><a href="home.jsp" class="btn btn-warning btn-nav">Accueil</a></li>
+			  		<li>&nbsp;</li>
             		<li><a href="<%= userService.createLogoutURL("/index.jsp") %>" class="btn btn-danger btn-small btn-nav">Déconnexion</a></li>
           		</ul>
         	</div><!--/.nav-collapse -->
@@ -58,7 +60,7 @@
 				
 			<%-- The user is logged in --%>
 			<div class="container">
-      			<legend>Profil de XXX</legend>
+      			<legend>Profil de <%out.println(user.getEmail()); %></legend>
 	  			<div class="row">
         		<div class="col-sm-4">
           			<div class="panel panel-info">
