@@ -39,7 +39,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="home.html"><img id="logo" alt="logo" src="bootstrap/img/LogoMN.png"><span id="movin"> Movin'</span><span id="nantes">Nantes</span></a>
+          <a class="navbar-brand" href="home.jsp"><img id="logo" alt="logo" src="bootstrap/img/LogoMN.png"><span id="movin"> Movin'</span><span id="nantes">Nantes</span></a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -56,10 +56,10 @@
         <div class="col-sm-8">
           <div class="panel panel-primary">
             <div class="panel-heading">
-              <h3 class="panel-title">Evènement proposé par XXX :</h3>
+              <h3 class="panel-title">Evènement proposé par xxx :</h3>
             </div>
             <div class="panel-body">
-              <p>Sport : Football<br>Lieu : Hippodrome<br>Date : 17/10/2013 18h00<br>Place : 7/22<br>Description : Un petit foot 11v11 bien sympas.</p>
+              <p>Sport : Football<br>Lieu : Hippodrome<br>Date : 27/11/2013 18h00<br>Place : 7/22<br>Description : Un petit foot 11v11 bien sympas.</p>
               <a href="#" class="btn btn-primary">S'inscrire</a>
 			</div>
           </div>
@@ -70,7 +70,7 @@
               <h3 class="panel-title">Carte :</h3>
             </div>
             <div class="panel-body">
-              <p><iframe width="300" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.fr/maps?f=q&amp;source=s_q&amp;hl=fr&amp;geocode=&amp;q=ile+de+versaillas&amp;aq=&amp;sll=47.22531,-1.554651&amp;sspn=0.019702,0.045447&amp;ie=UTF8&amp;hq=&amp;hnear=%C3%8Ele+de+Versailles&amp;t=m&amp;ll=47.212572,-1.557312&amp;spn=0.139927,0.205994&amp;z=11&amp;output=embed"></iframe><br /><small><a href="https://maps.google.fr/maps?f=q&amp;source=embed&amp;hl=fr&amp;geocode=&amp;q=ile+de+versaillas&amp;aq=&amp;sll=47.22531,-1.554651&amp;sspn=0.019702,0.045447&amp;ie=UTF8&amp;hq=&amp;hnear=%C3%8Ele+de+Versailles&amp;t=m&amp;ll=47.212572,-1.557312&amp;spn=0.139927,0.205994&amp;z=11" style="color:#0000FF;text-align:left">Agrandir le plan</a></small></p>
+              <p style="text-align:center"><iframe width="300" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.fr/maps?f=q&amp;source=s_q&amp;hl=fr&amp;geocode=&amp;q=47.248810,+-1.564139&amp;aq=&amp;sll=47.22531,-1.554651&amp;sspn=0.019702,0.045447&amp;ie=UTF8&amp;hq=&amp;hnear=47.248810,+-1.564139&amp;t=m&amp;ll=47.212572,-1.557312&amp;spn=0.139927,0.205994&amp;z=11&amp;output=embed"></iframe></p>
             </div>
           </div>
         </div>

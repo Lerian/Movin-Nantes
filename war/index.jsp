@@ -32,7 +32,7 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="index.html"><img id="logo" alt="logo" src="bootstrap/img/LogoMN.png"><span id="movin"> Movin'</span><span id="nantes">Nantes</span></a>
+          <a class="navbar-brand" href="index.jsp"><img id="logo" alt="logo" src="bootstrap/img/LogoMN.png"><span id="movin"> Movin'</span><span id="nantes">Nantes</span></a>
         </div>
       </div>
     </div>
@@ -44,7 +44,7 @@
 		    <div class="page-header">
             <h2>Bienvenue sur Movin'Nantes</h2>
 			</div>
-            <p class="lead">Ici prochainement, plus d'information sur une application qui va faire bouger !</p>
+            <p class="lead">Envie de bouger ? <br>Faire un Foot, ou un Basket, mais vous n’êtes pas assez nombreux ? <br><br>Movin-Nantes vous indique en temps réel les évènements sportifs, à côté de chez vous et le nombre de place restantes. Organisez vous même vos rencontres, vos évènements et bougez !</p>
             <p><a href="<%= UserServiceFactory.getUserService().createLoginURL("/home.jsp") %>" class="btn btn-success btn-nav">Connexion</a></p>
           </div>
         </div>
@@ -55,10 +55,7 @@
             </div>
             <div class="panel-body">
               <ul class="nav nav-list">
-                <li><a href="#">Foot à 10</a></li>
-                <li><a href="#">Massage à 3</a></li>
-                <li><a href="#">Footing 15km</a></li>
-                <li><a href="#">Patinoire</a></li>
+                <li><a href="event.jsp">Football</a></li>
               </ul>
 			</div>
           </div>
