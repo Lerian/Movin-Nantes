@@ -10,7 +10,7 @@
 <title>Liste des utilisateurs</title>
 </head>
 <body>
-	<%
+	<%	//TODO supprimer ce jsp à la fin du dev
 		for(int i=0;i<users.getSize();i++) {
 			%><p><% out.print(users.getUserString(i));%></p><%
 		}

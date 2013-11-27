@@ -4,24 +4,6 @@ xmlns="http://java.sun.com/xml/ns/javaee"
 xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
-<sessions-enabled>true</sessions-enabled>
-	<servlet>
-		<servlet-name>Movin_Nantes</servlet-name>
-		<servlet-class>movinnantes.Movin_NantesServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Movin_Nantes</servlet-name>
-		<url-pattern>/movin_nantes</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
-		<servlet-name>Event_List</servlet-name>
-		<servlet-class>movinnantes.EventListServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Event_List</servlet-name>
-		<url-pattern>/event_list</url-pattern>
-	</servlet-mapping>
 
 	<servlet>
 		<servlet-name>RerunServlet</servlet-name>
