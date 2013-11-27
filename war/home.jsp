@@ -82,9 +82,19 @@
 		
 		<%-- Constructing the page content --%>
 		
-		
-		
 		<div class="container">
+		
+		<%	// Affichage d'un avertissement si le pseudo est celui par défaut
+			if(currentUser.nameIsDefault()) {
+			%>
+			<div class="row">
+				<p class="text-center"><a href="profile.jsp" class="btn btn-warning btn-nav">Attention! Votre pseudo est toujours le pseudo par défaut, vous devriez le changer dans votre profil !</a></p>
+			</div>
+			<hr>
+			<%
+			}
+		%>
+		
 			<div class="row">
       			<% if (user != null) { %>
 		        	<div class="col-sm-4">
@@ -93,7 +103,6 @@
               				<h3 class="panel-title">Mes évènements :</h3>
             			</div>
             			<div class="panel-body">
-              				<p>bla<br>bla<br>bla</p>
               				<p><a data-toggle="modal" href="#myModal" class="btn btn-info">Créer un évènement &raquo;</a></p>
             			</div>
           			</div>
@@ -104,7 +113,6 @@
               				<h3 class="panel-title">Mes inscriptions :</h3>
             			</div>
             			<div class="panel-body">
-              				<p>bla<br>bla<br>bla</p>
             			</div>
           			</div>
         			</div>

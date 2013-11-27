@@ -32,4 +32,8 @@ public class UserBean implements Serializable {
 	public void setMail(String m) {
 		user.setMail(m);
 	}
+	
+	public boolean nameIsDefault() {
+		return "Unknown user".equals(getName());
+	}
 }
