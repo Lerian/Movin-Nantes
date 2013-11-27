@@ -35,6 +35,15 @@ public class UsersBean implements Serializable {
 			return null;
 	}
 	
+	public UserClass getUser(String mail) {
+		for(int i=0;i<users.size();i++) {
+			if(mail.equals(users.get(i).getMail())) {
+				return users.get(i);
+			}
+		}
+		return null;
+	}
+	
 	public int getSize() {
 		return users.size();
 	}

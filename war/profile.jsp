@@ -8,6 +8,24 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <jsp:useBean id="users" scope="application" class="beans.UsersBean" />
+<jsp:useBean id="currentUser" scope="session" class="beans.UserBean" />
+
+<%-- Checking if the user is logged in or not --%>		
+<%-- 	If the result is positive, checks if the user is already known, add him if not --%>
+<%
+	UserService userService = UserServiceFactory.getUserService();
+	User user = userService.getCurrentUser();
+	if (user != null) {
+		pageContext.setAttribute("user", user);
+	    ///////////////////////////////////////////////////////
+	    users.addUser(new UserClass(user.getEmail()));
+	    users.getUser(user.getEmail()).setName(request.getParameter("nomUtilisateur"));
+	    currentUser.setUser(users.getUser(user.getEmail()), user.getEmail());
+	    ////////////////////////////////////////////////////////
+	} else {
+		response.sendRedirect(userService.createLogoutURL("/index.jsp"));
+	}
+%>
 
 <html>
 	<head>
@@ -30,7 +48,6 @@
     </style>
     <link href="bootstrap/css/bootstrap-theme.css" rel="stylesheet">
 	<link href="bootstrap/css/typeahead.css" rel="stylesheet">
-	<%UserService userService = UserServiceFactory.getUserService(); %>
   </head>
 	<body>
 	  
@@ -55,17 +72,21 @@
       	</div>
     </div>
 		  	
-		<%-- Checking if the user is logged in or not --%>
-		<%
-		User user = userService.getCurrentUser();
-		if (user != null) {
-			pageContext.setAttribute("user", user);
-			users.addUser(new UserClass("unknown user",user.getEmail()));
-			%>
-				
-			<%-- The user is logged in --%>
 			<div class="container">
-      			<legend>Profil de <%out.println(user.getEmail()); %></legend>
+      			<legend>Profil de <% out.print(currentUser.getMail());%> </legend>
+	  			<div class="row">
+        		<div class="col-sm-5">
+	  				<form class="form-inline" method="post" action="profile.jsp">
+  							Pseudo affiché sur le site: 
+  						<div class="form-group">
+   					 		<label class="sr-only">Nom</label>
+    						<input class="form-control" name="nomUtilisateur" type="text" value="<%out.print(currentUser.getName());%>">
+  						</div>
+  						<button type="submit" class="btn btn-info">Changer</button>
+					</form>
+				</div>
+	  			</div>
+	  			<hr>
 	  			<div class="row">
         		<div class="col-sm-4">
           			<div class="panel panel-info">
@@ -112,17 +133,6 @@
           			</div>
 				</div>
 	  		</div>
-				
-			<%
-		} else {
-			%>
-			
-			<%-- The user isn't logged in --%>
-			
-			<% response.sendRedirect(userService.createLogoutURL("/index.jsp")); %>
-			<%
-		}
-		%>
 	
 		<hr>
 
