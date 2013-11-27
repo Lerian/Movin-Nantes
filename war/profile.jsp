@@ -3,7 +3,11 @@
 <%@ page import="com.google.appengine.api.users.User" %>
 <%@ page import="com.google.appengine.api.users.UserService" %>
 <%@ page import="com.google.appengine.api.users.UserServiceFactory" %>
+<%@ page import="classes.UserClass" %>
+
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+<jsp:useBean id="users" scope="application" class="beans.UsersBean" />
 
 <html>
 	<head>
@@ -56,6 +60,7 @@
 		User user = userService.getCurrentUser();
 		if (user != null) {
 			pageContext.setAttribute("user", user);
+			users.addUser(new UserClass("unknown user",user.getEmail()));
 			%>
 				
 			<%-- The user is logged in --%>

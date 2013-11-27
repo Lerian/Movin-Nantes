@@ -11,8 +11,11 @@
 <%@ page import="com.google.appengine.api.datastore.Query" %>
 <%@ page import="com.google.appengine.api.datastore.Query.FilterOperator" %>
 <%@ page import="com.google.appengine.api.datastore.PreparedQuery" %>
+<%@ page import="classes.UserClass" %>
 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+<jsp:useBean id="users" scope="application" class="beans.UsersBean" />
 
 <html>
 	<head>
@@ -40,27 +43,15 @@
 	<body>
 		  	
 		<%-- Checking if the user is logged in or not --%>		
-		<%-- 	If the result is positive, checks if the user is already in the datastore, put him in if not --%>
+		<%-- 	If the result is positive, checks if the user is already known, add him if not --%>
 		<%
 		UserService userService = UserServiceFactory.getUserService();
 		User user = userService.getCurrentUser();
 		if (user != null) {
 			pageContext.setAttribute("user", user);
-			
-		    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-			
-			Query query = new Query("User");
-			query.addFilter("email", FilterOperator.EQUAL, user.getEmail());
-			PreparedQuery pq = datastore.prepare(query);
-			if (pq.asSingleEntity() == null) {
-				Key userKey = KeyFactory.createKey("User", user.getNickname());
-			    Entity userEntity = new Entity("User", userKey);
-			    userEntity.setProperty("email", user.getEmail());
-			 	userEntity.setProperty("places","");
-			 	userEntity.setProperty("sports","");
-			    
-			    datastore.put(userEntity); //save it
-			}
+		    ///////////////////////////////////////////////////////
+		    users.addUser(new UserClass("unknown user",user.getEmail()));
+		    ////////////////////////////////////////////////////////
 		} else {
 			response.sendRedirect(userService.createLogoutURL("/index.jsp"));
 		}

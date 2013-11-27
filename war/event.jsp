@@ -43,9 +43,9 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="profile.html" class="btn btn-warning btn-small btn-nav">Profile</a></li>
+            <li><a href="profile.jsp" class="btn btn-warning btn-small btn-nav">Profil</a></li>
 			<li>&nbsp;</li>
-            <li><a href="index.html" class="btn btn-danger btn-small btn-nav">Déconexion</a></li>
+            <li><a href="index.jsp" class="btn btn-danger btn-small btn-nav">Déconnexion</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

@@ -4,6 +4,7 @@ xmlns="http://java.sun.com/xml/ns/javaee"
 xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+<sessions-enabled>true</sessions-enabled>
 	<servlet>
 		<servlet-name>Movin_Nantes</servlet-name>
 		<servlet-class>movinnantes.Movin_NantesServlet</servlet-class>
