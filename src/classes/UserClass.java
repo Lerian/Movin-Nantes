@@ -1,8 +1,9 @@
 package classes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class UserClass {
+public class UserClass implements Serializable{
 	String mail;
 	String name;
 	
