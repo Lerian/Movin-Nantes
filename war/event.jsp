@@ -5,6 +5,11 @@
 <%@ page import="com.google.appengine.api.users.UserServiceFactory" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+<%
+	UserService userService = UserServiceFactory.getUserService();
+	User user = userService.getCurrentUser();
+%>
+
 <html>
 <head>
 	<meta charset="utf-8">
@@ -40,11 +45,23 @@
 		       	<a class="navbar-brand" href="home.jsp"><img id="logo" alt="logo" src="bootstrap/img/LogoMN.png"><span id="movin"> Movin'</span><span id="nantes">Nantes</span></a>
      		</div>
      		<div class="navbar-collapse collapse">
+     			<%-- Buttons if a user is logged in --%>
+     			<% if(user != null) { %>
        			<ul class="nav navbar-nav navbar-right">
+       				<li><a href="home.jsp" class="btn btn-warning btn-small btn-nav">Accueil</a></li>
+					<li>&nbsp;</li>
          			<li><a href="profile.jsp" class="btn btn-warning btn-small btn-nav">Profil</a></li>
 					<li>&nbsp;</li>
-         			<li><a href="index.jsp" class="btn btn-danger btn-small btn-nav">Déconnexion</a></li>
+         			<li><a href="<%= userService.createLogoutURL("/index.jsp") %>" class="btn btn-danger btn-small btn-nav">Déconnexion</a></li>
        			</ul>
+       			<%-- Buttons if no user is logged in --%>
+       			<% } else { %>
+       			<ul class="nav navbar-nav navbar-right">
+       				<li><a href="index.jsp" class="btn btn-warning btn-small btn-nav">Accueil</a></li>
+					<li>&nbsp;</li>
+         			<li><a href="<%= userService.createLoginURL("/home.jsp") %>" class="btn btn-success btn-small btn-nav">Connection</a></li>
+       			</ul>
+       			<% } %>
      		</div><!--/.nav-collapse -->
 		</div>
 	</div>
@@ -77,9 +94,7 @@
       	<hr>
 
 		<%-- The site's footer --%>
-      	<footer>
-        	<p>&copy; 2013 Vincent RAVENEAU, Coraline MARIE, Quentin MORICEAU - M1 ALMA <a href="http://www.univ-nantes.fr/">Université de Nantes</a></p>
-      	</footer>
+      	<jsp:include page="footer.jsp"/>
 
     </div><!--/.fluid-container-->
 

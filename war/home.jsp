@@ -125,9 +125,7 @@
    		<hr>
 
 		<%-- The site's footer --%>
-   		<footer>
-			<p>&copy; 2013 Vincent RAVENEAU, Coraline MARIE, Quentin MORICEAU - M1 ALMA <a href="http://www.univ-nantes.fr/">Université de Nantes</a></p>
-  		</footer>
+   		<jsp:include page="footer.jsp"/>
    	</div><!--/.fluid-container-->
    	
    	<%-- PopUp d'ajout d'évènement --%>

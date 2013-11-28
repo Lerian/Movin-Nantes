@@ -28,7 +28,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Profil de <% currentUser.getName(); %></title>
+    <title>Profil de <% out.print(currentUser.getName()); %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -70,7 +70,7 @@
    	</div>
 	<%-- The page's content --%>
 	<div class="container">
-   		<legend>Profil de <% out.print(currentUser.getMail());%> </legend>
+   		<legend>Profil de <%out.print(currentUser.getName());%> (<% out.print(currentUser.getMail());%>) </legend>
 		<div class="row">
        		<div class="col-sm-5">
   				<form class="form-inline" method="post" action="profile.jsp">
@@ -132,9 +132,7 @@
   		</div>
 		<hr>
 		<%-- The site's footer --%>
-	    <footer>
-	    	<p>&copy; 2013 Vincent RAVENEAU, Coraline MARIE, Quentin MORICEAU - M1 ALMA <a href="http://www.univ-nantes.fr/">Université de Nantes</a></p>
-	    </footer>
+	    <jsp:include page="footer.jsp"/>
 	</div>
 
 	<!-- Javascript section
