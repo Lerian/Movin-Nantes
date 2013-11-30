@@ -9,6 +9,7 @@ public class EventClass implements Serializable{
 	String lieu;
 	int places;
 	Date date;
+	String description;
 	UserClass organisateur;
 	
 	public String getSport() {
@@ -27,15 +28,29 @@ public class EventClass implements Serializable{
 		return date;
 	}
 	
+	public String getDescription() {
+		return description;
+	}
+	
 	public UserClass getOrganisateur() {
 		return organisateur;
 	}
 	
-	public void EventClass(String s, String l, int p, Date d, UserClass o) {
+	public EventClass(String s, String l, int p, Date da, String de, UserClass o) {
 		sport = s;
 		lieu = l;
 		places = p;
-		date = d;
+		date = da;
+		description = de;
+		organisateur = o;
+	}
+	
+	public EventClass(String s, String l, String p, String da, String de, UserClass o) {
+		sport = s;
+		lieu = l;
+		places = Integer.parseInt(p);
+		date = new Date(/*da*/);
+		description = de;
 		organisateur = o;
 	}
 	
@@ -69,5 +84,9 @@ public class EventClass implements Serializable{
 				return i;
 		}
 		return -1;
+	}
+	
+	public String toString() {
+		return "trololo!!";
 	}
 }

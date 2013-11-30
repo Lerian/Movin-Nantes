@@ -12,11 +12,13 @@
 <%@ page import="com.google.appengine.api.datastore.Query.FilterOperator" %>
 <%@ page import="com.google.appengine.api.datastore.PreparedQuery" %>
 <%@ page import="classes.UserClass" %>
+<%@ page import="classes.EventClass" %>
 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <jsp:useBean id="users" scope="application" class="beans.UsersBean" />
 <jsp:useBean id="currentUser" scope="session" class="beans.UserBean" />
+<jsp:useBean id="events" scope="application" class="beans.EventsBean"/>
 
 <%-- Checking if the user is logged in or not --%>		
 <%
@@ -27,6 +29,24 @@
 		pageContext.setAttribute("user", user);
 	    users.addUser(new UserClass(user.getEmail()));
 	    currentUser.setUser(users.getUser(user.getEmail()), user.getEmail());
+	    // Creating the event given in parameter if it is relevant
+	    if (request.getParameter("sport") != null &&
+	    	!request.getParameter("sport").isEmpty() &&
+	    	!request.getParameter("lieu").isEmpty() &&
+	    	!request.getParameter("date").isEmpty() &&
+	    	!request.getParameter("places").isEmpty() &&
+	    	!request.getParameter("description").isEmpty())
+	    {
+	    	EventClass ev = new EventClass(
+	    			request.getParameter("sport"),
+	    			request.getParameter("lieu"),
+	    			request.getParameter("places"),
+	    			request.getParameter("date"),
+	    			request.getParameter("description"),
+	    			users.getUser(user.getEmail()));
+	    	events.addEvent(ev);
+	    	currentUser.addEvent(ev);
+	    }
 	} else {	// Go back to the index if the user isn't logged in
 		response.sendRedirect(userService.createLogoutURL("/index.jsp"));
 	}
@@ -98,6 +118,18 @@
            				<h3 class="panel-title">Mes évènements :</h3>
          			</div>
          			<div class="panel-body">
+         				<%
+         					for(int i=0;i<currentUser.getNumberOfEvents();i++) {
+   						%>
+   								<p>Activité :<% out.print(currentUser.getEvent(i).getSport()); %></p>
+   								<p>Lieu :<% out.print(currentUser.getEvent(i).getLieu()); %></p>
+   								<p>Date :<% out.print(currentUser.getEvent(i).getDate()); %></p>
+   								<p>Places restantes :<% out.print(currentUser.getEvent(i).getPlaces()); %></p>
+   								<p><% out.print(currentUser.getEvent(i).getDescription()); %></p>
+   								<hr>
+   						<%
+         					}
+         				%>
            				<p><a data-toggle="modal" href="#myModal" class="btn btn-info">Créer un évènement &raquo;</a></p>
          			</div>
        			</div>
@@ -137,25 +169,25 @@
 	      			<h4 class="modal-title">Ajout d'un évènement :</h4>
 	    		</div>
 	    		<div class="modal-body">
-	        		<form>
+	        		<form method="post" action="/home.jsp">
 						<div class="col-lg-6">
-	                		<input class="form-control" id="sport" type="text" placeholder="Sport">
+	                		<input class="form-control" id="sport" name ="sport" type="text" placeholder="Sport">
 						</div>
 						<div class="col-lg-6">
-	                		<input class="form-control" id="lieu" type="text" placeholder="Lieu">
+	                		<input class="form-control" id="lieu" name="lieu" type="text" placeholder="Lieu">
 						</div><br><br>
 						<div class="col-lg-6">
-	                		<input class="form-control" id="date" type="text" placeholder="Date">
+	                		<input class="form-control" id="date" name="date" type="text" placeholder="Date">
 						</div>
 						<div class="col-lg-6">
-	                		<input class="form-control" type="text" placeholder="Nombre de place">
+	                		<input class="form-control" name="places" type="text" placeholder="Nombre de place">
 						</div><br><br>
-						<textarea class="form-control" rows="3">Descriptif</textarea>
+						<textarea class="form-control" name="description" rows="3">Descriptif</textarea>
+	        			<div class="modal-footer">
+      						<button class="btn btn-danger" data-dismiss="modal">Annuler</button>
+	      					<button type="submit" class="btn btn-primary">Ajouter !</button>
+    					</div>
 	        		</form>
-	    		</div>
-	    		<div class="modal-footer">
-      				<button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
-	      			<button type="button" class="btn btn-primary">Ajouter !</button>
 	    		</div>
   			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
@@ -175,7 +207,7 @@
 	$(".btn-nav").css("margin-top", "9px");
        $("#logo").css("height", "40px");
 	$('#date').datepicker({
-         format: "dd/mm/yyyy",
+         format: "dd-mm-yyyy",
          startDate: "today",
          language: "fr",
          orientation: "top left",

@@ -9,8 +9,26 @@ import classes.UserClass;
 public class EventsBean implements Serializable{
 	ArrayList<EventClass> events;
 	
+	public EventsBean() {
+		events = new ArrayList<EventClass>();
+	}
+	
+	public int getSize() {
+		return events.size();
+	}
+	
+
+	public EventClass getEvent(int i) {
+		if (i < events.size())
+			return events.get(i);
+		else
+			return null;
+	}
+	
 	public void addEvent(EventClass newEvent) {
-		events.add(newEvent);
+		if(!newEvent.isInArray(events)) {
+			events.add(newEvent);
+		}
 	}
 	
 	public void removeEvent(EventClass oldEvent) {

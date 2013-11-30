@@ -6,15 +6,18 @@ import java.util.ArrayList;
 public class UserClass implements Serializable{
 	String mail;
 	String name;
+	ArrayList<EventClass> events;
 	
 	public UserClass(String n, String m) {
 		mail = m;
 		name = n;
+		events = new ArrayList<EventClass>();
 	}
 	
 	public UserClass(String m) {
 		mail = m;
 		name = "Unknown user";
+		events = new ArrayList<EventClass>();
 	}
 	
 	public String getName() {
@@ -56,5 +59,32 @@ public class UserClass implements Serializable{
 	
 	public boolean equals(UserClass user) {
 		return mail.equals(user.getMail());
+	}
+	
+	public void addEvent(EventClass newEvent) {
+		if(!newEvent.isInArray(events)) {
+			events.add(newEvent);
+		}
+	}
+	
+	public void removeEvent(EventClass oldEvent) {
+		if(containsEvent(oldEvent)) {
+			events.remove(oldEvent.indexInArray(events));
+		}
+	}
+	
+	public EventClass getEvent(int i) {
+		if (i < events.size())
+			return events.get(i);
+		else
+			return null;
+	}
+	
+	public boolean containsEvent(EventClass event) {
+		return event.isInArray(events);
+	}
+	
+	public int getNumberOfEvents() {
+		return events.size();
 	}
 }
