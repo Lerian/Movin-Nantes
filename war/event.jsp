@@ -3,11 +3,25 @@
 <%@ page import="com.google.appengine.api.users.User" %>
 <%@ page import="com.google.appengine.api.users.UserService" %>
 <%@ page import="com.google.appengine.api.users.UserServiceFactory" %>
+<%@ page import="classes.EventClass" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <%
 	UserService userService = UserServiceFactory.getUserService();
 	User user = userService.getCurrentUser();
+%>
+
+<jsp:useBean id="users" scope="application" class="beans.UsersBean" />
+<jsp:useBean id="currentUser" scope="session" class="beans.UserBean" />
+<jsp:useBean id="events" scope="application" class="beans.EventsBean"/>
+
+<%
+	EventClass event = null;
+	if (request.getParameter("eventID") != null) {
+		event = events.getEventById(request.getParameter("eventID"));
+	} else {
+		response.sendRedirect("/home.jsp");
+	}
 %>
 
 <html>
@@ -72,11 +86,17 @@
 	        <div class="col-sm-8">
           		<div class="panel panel-primary">
 		            <div class="panel-heading">
-	              		<h3 class="panel-title">Evènement proposé par xxx :</h3>
+	              		<h3 class="panel-title">Evènement proposé par <%= event.getOrganisateur().getName() %> :</h3>
 		            </div>
 		            <div class="panel-body">
-	              		<p>Sport : Football<br>Lieu : Hippodrome<br>Date : 27/11/2013 18h00<br>Place : 7/22<br>Description : Un petit foot 11v11 bien sympas.</p>
+	              		<p>Activité : <%= event.getSport() %><br>
+	              		Lieu : <%= event.getLieu() %><br>
+	              		Date : <%= event.getDate() %><br>
+	              		Places restantes : <%= event.getPlaces() %><br>
+	              		<%= event.getDescription() %></p>
 		              	<a href="#" class="btn btn-primary">S'inscrire</a>
+		              	<% //TODO faire l'inscription 
+		              		//TODO faire le lien avec la carte%>
 					</div>
           		</div>
 			</div>

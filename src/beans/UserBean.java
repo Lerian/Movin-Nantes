@@ -42,19 +42,19 @@ public class UserBean implements Serializable {
 		return "Unknown user".equals(getName());
 	}
 	
-	public void addEvent(EventClass newEvent) {
-			user.addEvent(newEvent);
+	public void addEventCreated(EventClass newEvent) {
+			user.addEventCreated(newEvent);
 	}
 	
-	public void removeEvent(EventClass oldEvent) {
-			user.removeEvent(oldEvent);
+	public void removeEventCreated(EventClass oldEvent) {
+			user.removeEventCreated(oldEvent);
 	}
 	
-	public EventClass getEvent(int i) {
-		return user.getEvent(i);
+	public EventClass getEventCreated(int i) {
+		return user.getEventCreated(i);
 	}
 	
-	public int getNumberOfEvents() {
-		return user.getNumberOfEvents();
+	public int getNumberOfEventsCreated() {
+		return user.getNumberOfEventsCreated();
 	}
 }

@@ -45,7 +45,7 @@
 	    			request.getParameter("description"),
 	    			users.getUser(user.getEmail()));
 	    	events.addEvent(ev);
-	    	currentUser.addEvent(ev);
+	    	currentUser.addEventCreated(ev);
 	    }
 	} else {	// Go back to the index if the user isn't logged in
 		response.sendRedirect(userService.createLogoutURL("/index.jsp"));
@@ -119,13 +119,17 @@
          			</div>
          			<div class="panel-body">
          				<%
-         					for(int i=0;i<currentUser.getNumberOfEvents();i++) {
+         					for(int i=0;i<currentUser.getNumberOfEventsCreated();i++) {
    						%>
-   								<p>Activité :<% out.print(currentUser.getEvent(i).getSport()); %></p>
-   								<p>Lieu :<% out.print(currentUser.getEvent(i).getLieu()); %></p>
-   								<p>Date :<% out.print(currentUser.getEvent(i).getDate()); %></p>
-   								<p>Places restantes :<% out.print(currentUser.getEvent(i).getPlaces()); %></p>
-   								<p><% out.print(currentUser.getEvent(i).getDescription()); %></p>
+								<p>Activité : <% out.print(currentUser.getEventCreated(i).getSport()); %></p>
+   								<p>Lieu : <% out.print(currentUser.getEventCreated(i).getLieu()); %></p>
+   								<p>Date : <% out.print(currentUser.getEventCreated(i).getDate()); %></p>
+   								<p>Places restantes : <% out.print(currentUser.getEventCreated(i).getPlaces()); %></p>
+   								<p><% out.print(currentUser.getEventCreated(i).getDescription()); %></p>
+   								<form method="post" action="/event.jsp">
+   									<input type="hidden" name="eventID" value="<%= currentUser.getEventCreated(i).hashCode() %>"/>
+   									<button type="submit" class="btn btn-info">+ d'infos</button>
+   								</form>
    								<hr>
    						<%
          					}
@@ -146,7 +150,7 @@
             <div class="col-sm-4">
          		<div class="panel panel-danger">
 	           		<div class="panel-heading">
-             			<h3 class="panel-title">Prochains évènements :</h3>
+             			<h3 class="panel-title">Prochains évènements intéressants:</h3>
 	           		</div>
 	           		<div class="panel-body">
              			<p><a href="event.jsp">Football</a></p>

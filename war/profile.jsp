@@ -92,7 +92,10 @@
 					<button type="submit" class="btn btn-info">Changer</button>
 				</form>
 			</div>
-			<div class="col-sm-5">
+			<div class="col-sm-3">
+			
+			</div>
+			<div class="col-sm-4">
   				<form class="form-inline" method="post" action="profile.jsp">
   					Se désinscrire du site:
   					<input type="hidden" name="suppression" value="true"/>

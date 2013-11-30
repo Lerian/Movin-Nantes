@@ -40,4 +40,13 @@ public class EventsBean implements Serializable{
 	public boolean containsEvent(EventClass event) {
 		return event.isInArray(events);
 	}
+	
+	public EventClass getEventById(String id_s) {
+		int id = Integer.parseInt(id_s);
+		for (int i=0;i<events.size();i++) {
+			if (events.get(i).hashCode() == id)
+				return events.get(i);
+		}
+		return null;
+	}
 }

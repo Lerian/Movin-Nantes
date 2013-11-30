@@ -11,6 +11,7 @@ public class EventClass implements Serializable{
 	Date date;
 	String description;
 	UserClass organisateur;
+	int id;
 	
 	public String getSport() {
 		return sport;
@@ -49,7 +50,7 @@ public class EventClass implements Serializable{
 		sport = s;
 		lieu = l;
 		places = Integer.parseInt(p);
-		date = new Date(/*da*/);
+		date = new Date(/*da*/);//TODO pouvoir prendre en compte la date passée en paramètres
 		description = de;
 		organisateur = o;
 	}
@@ -87,6 +88,6 @@ public class EventClass implements Serializable{
 	}
 	
 	public String toString() {
-		return "trololo!!";
+		return "EventClass.toString to be implemented x)";
 	}
 }
