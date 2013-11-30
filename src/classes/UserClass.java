@@ -53,4 +53,8 @@ public class UserClass implements Serializable{
 		}
 		return -1;
 	}
+	
+	public boolean equals(UserClass user) {
+		return mail.equals(user.getMail());
+	}
 }
