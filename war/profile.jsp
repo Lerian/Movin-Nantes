@@ -15,11 +15,20 @@
 	UserService userService = UserServiceFactory.getUserService();
 	User user = userService.getCurrentUser();
 	if (user != null) {
+		boolean userDeletion = false;
+		// Deleting the user's profile and logging him out if needed
+		if (request.getParameter("suppression") != null && request.getParameter("suppression").equals("true")) {
+			users.removeUser(new UserClass(user.getEmail()));
+			response.sendRedirect(userService.createLogoutURL("/index.jsp"));
+			userDeletion = true;
+		}
 		// Adding the user to the users' list, and putting him in the session bean (if necessary)
-		pageContext.setAttribute("user", user);
-	    users.addUser(new UserClass(user.getEmail()));
-	    users.getUser(user.getEmail()).setName(request.getParameter("nomUtilisateur"));
-	    currentUser.setUser(users.getUser(user.getEmail()), user.getEmail());
+		if (!userDeletion) {
+			pageContext.setAttribute("user", user);
+		    users.addUser(new UserClass(user.getEmail()));
+		    users.getUser(user.getEmail()).setName(request.getParameter("nomUtilisateur"));
+		    currentUser.setUser(users.getUser(user.getEmail()), user.getEmail());
+		}
 	} else {	// Go back to the index if the user isn't logged in
 		response.sendRedirect(userService.createLogoutURL("/index.jsp"));
 	}
@@ -68,18 +77,26 @@
         	</div><!--/.nav-collapse -->
    		</div>
    	</div>
+   	
 	<%-- The page's content --%>
 	<div class="container">
    		<legend>Profil de <%out.print(currentUser.getName());%> (<% out.print(currentUser.getMail());%>) </legend>
 		<div class="row">
        		<div class="col-sm-5">
   				<form class="form-inline" method="post" action="profile.jsp">
- 						Pseudo affiché sur le site: 
- 						<div class="form-group">
-  					 		<label class="sr-only">Nom</label>
-   							<input class="form-control" name="nomUtilisateur" type="text" value="<%out.print(currentUser.getName());%>">
- 						</div>
- 						<button type="submit" class="btn btn-info">Changer</button>
+					Pseudo affiché sur le site: 
+					<div class="form-group">
+			 			<label class="sr-only">Nom</label>
+						<input class="form-control" name="nomUtilisateur" type="text" value="<%out.print(currentUser.getName());%>">
+					</div>
+					<button type="submit" class="btn btn-info">Changer</button>
+				</form>
+			</div>
+			<div class="col-sm-5">
+  				<form class="form-inline" method="post" action="profile.jsp">
+  					Se désinscrire du site:
+  					<input type="hidden" name="suppression" value="true"/>
+					<button type="submit" class="btn btn-danger">Supprimer votre profil</button>
 				</form>
 			</div>
 		</div>

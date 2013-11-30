@@ -19,13 +19,13 @@ public class UsersBean implements Serializable {
 	}
 	
 	public void removeUser(UserClass ancientUser) {
-		if(users.contains(ancientUser)) {
-			users.remove(users.indexOf(ancientUser));
+		if(containsUser(ancientUser)) {
+			users.remove(ancientUser.indexInArray(users));
 		}
 	}
 	
 	public boolean containsUser(UserClass user) {
-		return users.contains(user);
+		return user.isInArray(users);
 	}
 	
 	public String getUserString(int i) {

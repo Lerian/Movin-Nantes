@@ -45,4 +45,12 @@ public class UserClass implements Serializable{
 		}
 		return false;
 	}
+	
+	public int indexInArray(ArrayList<UserClass> array) {
+		for(int i=0;i<array.size();i++) {
+			if(mail.equals(array.get(i).getMail()))
+				return i;
+		}
+		return -1;
+	}
 }
