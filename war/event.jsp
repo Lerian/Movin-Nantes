@@ -91,7 +91,7 @@
 		            <div class="panel-body">
 	              		<p>Activité : <%= event.getSport() %><br>
 	              		Lieu : <%= event.getLieu() %><br>
-	              		Date : <%= event.getDate() %><br>
+	              		Date : <%= event.getDateString() %><br>
 	              		Places restantes : <%= event.getPlaces() %><br>
 	              		<%= event.getDescription() %></p>
 		              	<a href="#" class="btn btn-primary">S'inscrire</a>

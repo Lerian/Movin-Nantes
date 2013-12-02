@@ -123,7 +123,7 @@
    						%>
 								<p>Activité : <% out.print(currentUser.getEventCreated(i).getSport()); %></p>
    								<p>Lieu : <% out.print(currentUser.getEventCreated(i).getLieu()); %></p>
-   								<p>Date : <% out.print(currentUser.getEventCreated(i).getDate()); %></p>
+   								<p>Date : <% out.print(currentUser.getEventCreated(i).getDateString()); %></p>
    								<p>Places restantes : <% out.print(currentUser.getEventCreated(i).getPlaces()); %></p>
    								<p><% out.print(currentUser.getEventCreated(i).getDescription()); %></p>
    								<form method="post" action="/event.jsp">

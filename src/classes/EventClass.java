@@ -1,14 +1,15 @@
 package classes;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.ArrayList;
 
 public class EventClass implements Serializable{
 	String sport;
 	String lieu;
 	int places;
-	Date date;
+	GregorianCalendar date;
 	String description;
 	UserClass organisateur;
 	int id;
@@ -25,8 +26,17 @@ public class EventClass implements Serializable{
 		return places;
 	}
 	
-	public Date getDate() {
+	public GregorianCalendar getDate() {
 		return date;
+	}
+	
+	public String getDateString() {
+		String res = String.valueOf(date.get(Calendar.DAY_OF_MONTH))+
+				"/"+
+				String.valueOf(date.get(Calendar.MONTH)+1)+
+				"/"+
+				String.valueOf(date.get(Calendar.YEAR));
+		return res;
 	}
 	
 	public String getDescription() {
@@ -37,7 +47,7 @@ public class EventClass implements Serializable{
 		return organisateur;
 	}
 	
-	public EventClass(String s, String l, int p, Date da, String de, UserClass o) {
+	public EventClass(String s, String l, int p, GregorianCalendar da, String de, UserClass o) {
 		sport = s;
 		lieu = l;
 		places = p;
@@ -50,7 +60,8 @@ public class EventClass implements Serializable{
 		sport = s;
 		lieu = l;
 		places = Integer.parseInt(p);
-		date = new Date(/*da*/);//TODO pouvoir prendre en compte la date passée en paramètres
+		String day[] = da.split("-");
+		date = new GregorianCalendar(Integer.parseInt(day[2]),Integer.parseInt(day[1])-1,Integer.parseInt(day[0]));
 		description = de;
 		organisateur = o;
 	}
