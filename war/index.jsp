@@ -4,6 +4,8 @@
 <%@ page import="com.google.appengine.api.users.UserService" %>
 <%@ page import="com.google.appengine.api.users.UserServiceFactory" %>
 
+<jsp:useBean id="events" scope="application" class="beans.EventsBean"/>
+
 <html>
 <head>
 	<meta charset="utf-8">
@@ -40,7 +42,7 @@
 	<%-- The page's content --%>
 	<div class="container">
       	<div class="row">
-	        <div class="col-sm-9">
+	        <div class="col-sm-8">
 	          	<div class="starter-template">
 				    <div class="page-header">
 		            	<h2>Bienvenue sur Movin'Nantes</h2>
@@ -49,16 +51,44 @@
 		            <p><a href="<%= UserServiceFactory.getUserService().createLoginURL("/home.jsp") %>" class="btn btn-success btn-nav">Connexion</a></p>
 	          	</div>
 	        </div>
-	        <div class="col-sm-3">
+	        <div class="col-sm-4">
 			  	<div class="panel panel-primary">
 		            <div class="panel-heading">
-		              	<h3 class="panel-title">Evenements</h3>
+		              	<h3 class="panel-title">Evènements</h3>
 		            </div>
 		            <div class="panel-body">
-		              	<ul class="nav nav-list">
-		                	<li><a href="event.jsp">Football</a></li>
-		              	</ul>
-					</div>
+         				<%
+         					int nbEvents = 0;
+         					for(int i=0;i<events.getSize() || nbEvents == 10;i++) {
+             						if (nbEvents > 0) {
+  						%>
+   	   									<hr>
+   	   									<%
+             	         			}
+         							nbEvents++;
+             	   						%>
+									<p>Activité : <% out.print(events.getEvent(i).getSport()); %></p>
+	   								<p>Lieu : <% out.print(events.getEvent(i).getLieu()); %></p>
+	   								<p>Date : <% out.print(events.getEvent(i).getDateString()); %></p>
+	   								<p>Places restantes : <% out.print(events.getEvent(i).getPlaces()); %></p>
+	   								<p><% out.print(events.getEvent(i).getDescription()); %></p>
+	   								<div class="row">
+   										<div class="col-sm-4">
+   											<form method="post" action="/event.jsp">
+   												<input type="hidden" name="eventID" value="<%= events.getEvent(i).hashCode() %>"/>
+   												<button type="submit" class="btn btn-info">+ d'infos</button>
+   											</form>
+   										</div>
+   									</div>
+   						<%
+         					}
+         					if (events.getSize() == 0) {
+         				%>
+         						<p>Aucun événement n'a encore été créé. Connectez-vous et soyez le premier à proposer une activité aux autres utilisateurs!</p>
+         						<%
+         					}
+         						%>
+         			</div>
 	          	</div>
 	        </div>
       	</div>
