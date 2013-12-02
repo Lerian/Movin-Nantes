@@ -54,7 +54,31 @@ public class UserBean implements Serializable {
 		return user.getEventCreated(i);
 	}
 	
+	public EventClass getEventCreatedById(String id) {
+		return user.getEventCreatedById(id);
+	}
+	
 	public int getNumberOfEventsCreated() {
 		return user.getNumberOfEventsCreated();
+	}
+	
+	public void addEventJoined(EventClass newEvent) {
+			user.addEventJoined(newEvent);
+	}
+	
+	public void removeEventJoined(EventClass oldEvent) {
+			user.removeEventJoined(oldEvent);
+	}
+	
+	public EventClass getEventJoined(int i) {
+		return user.getEventJoined(i);
+	}
+	
+	public EventClass getEventJoinedById(String id) {
+		return user.getEventJoinedById(id);
+	}
+	
+	public int getNumberOfEventsJoined() {
+		return user.getNumberOfEventsJoined();
 	}
 }

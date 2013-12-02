@@ -46,6 +46,17 @@
 	    			users.getUser(user.getEmail()));
 	    	events.addEvent(ev);
 	    	currentUser.addEventCreated(ev);
+	    } else { // Handling the existing event given in parameter
+	    	if (request.getParameter("eventID") != null) {
+	    		// Leaving it if the user has already joined
+	    		if (currentUser.getEventJoinedById(request.getParameter("eventID")) != null) {
+	    			currentUser.removeEventJoined(currentUser.getEventJoinedById(request.getParameter("eventID")));
+	    			events.getEventById(request.getParameter("eventID")).addAPlace();
+	    		} else { // Joining it if the user has not already
+	    			currentUser.addEventJoined(events.getEventById(request.getParameter("eventID")));
+	    			events.getEventById(request.getParameter("eventID")).removeAPlace();
+	    		}
+	    	}
 	    }
 	} else {	// Go back to the index if the user isn't logged in
 		response.sendRedirect(userService.createLogoutURL("/index.jsp"));
@@ -144,6 +155,36 @@
            				<h3 class="panel-title">Mes inscriptions :</h3>
          			</div>
          			<div class="panel-body">
+         				<%
+         					for(int i=0;i<currentUser.getNumberOfEventsJoined();i++) {
+         						if (i > 0) {
+   						%>
+   									<hr>
+   									<%
+         						}
+   									%>
+								<p>Activité : <% out.print(currentUser.getEventJoined(i).getSport()); %></p>
+   								<p>Lieu : <% out.print(currentUser.getEventJoined(i).getLieu()); %></p>
+   								<p>Date : <% out.print(currentUser.getEventJoined(i).getDateString()); %></p>
+   								<p>Places restantes : <% out.print(currentUser.getEventJoined(i).getPlaces()); %></p>
+   								<p><% out.print(currentUser.getEventJoined(i).getDescription()); %></p>
+   								<div class="row">
+   									<div class="col-sm-4">
+   										<form method="post" action="/event.jsp">
+   											<input type="hidden" name="eventID" value="<%= currentUser.getEventJoined(i).hashCode() %>"/>
+   											<button type="submit" class="btn btn-info">+ d'infos</button>
+   										</form>
+   									</div>
+   									<div class="col-sm-4">
+   										<form method="post" action="/home.jsp">
+   											<input type="hidden" name="eventID" value="<%= currentUser.getEventJoined(i).hashCode() %>"/>
+   											<button type="submit" class="btn btn-danger">Désinscription</button>
+   										</form>
+   									</div>
+   								</div>
+   						<%
+         					}
+         				%>
          			</div>
        			</div>
   			</div>
@@ -153,8 +194,44 @@
              			<h3 class="panel-title">Prochains évènements intéressants:</h3>
 	           		</div>
 	           		<div class="panel-body">
-             			<p><a href="event.jsp">Football</a></p>
-	           		</div>
+         				<%
+         					int nbEvents = 0;
+         					for(int i=0;i<events.getSize() || nbEvents == 10;i++) {
+         						if ((currentUser.getEventJoinedById(String.valueOf(events.getEvent(i).hashCode())) == null)
+         							&&
+         							(currentUser.getEventCreatedById(String.valueOf(events.getEvent(i).hashCode())) == null))
+         						{
+             						if (nbEvents > 0) {
+  						%>
+   	   									<hr>
+   	   									<%
+             	         			}
+         							nbEvents++;
+             	   						%>
+									<p>Activité : <% out.print(events.getEvent(i).getSport()); %></p>
+	   								<p>Lieu : <% out.print(events.getEvent(i).getLieu()); %></p>
+	   								<p>Date : <% out.print(events.getEvent(i).getDateString()); %></p>
+	   								<p>Places restantes : <% out.print(events.getEvent(i).getPlaces()); %></p>
+	   								<p><% out.print(events.getEvent(i).getDescription()); %></p>
+	   								<div class="row">
+   										<div class="col-sm-4">
+   											<form method="post" action="/event.jsp">
+   												<input type="hidden" name="eventID" value="<%= events.getEvent(i).hashCode() %>"/>
+   												<button type="submit" class="btn btn-info">+ d'infos</button>
+   											</form>
+   										</div>
+   										<div class="col-sm-4">
+   											<form method="post" action="/home.jsp">
+   												<input type="hidden" name="eventID" value="<%= events.getEvent(i).hashCode() %>"/>
+   												<button type="submit" class="btn btn-success">Inscription</button>
+   											</form>
+   										</div>
+   									</div>
+   						<%
+         						}
+         					}
+         				%>
+         			</div>
          		</div>
 			</div>
   		</div>
@@ -181,8 +258,9 @@
 	                		<input class="form-control" id="lieu" name="lieu" type="text" placeholder="Lieu">
 						</div><br><br>
 						<div class="col-lg-6">
+							<% //TODO gérer l'heure %>
 	                		<input class="form-control" id="date" name="date" type="text" placeholder="Date">
-						</div>
+						</div> 
 						<div class="col-lg-6">
 	                		<input class="form-control" name="places" type="text" placeholder="Nombre de place">
 						</div><br><br>

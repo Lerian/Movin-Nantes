@@ -66,6 +66,10 @@ public class EventClass implements Serializable{
 		organisateur = o;
 	}
 	
+	public void addAPlace() {
+		places++;
+	}
+	
 	public void removeAPlace() {
 		places--;
 	}

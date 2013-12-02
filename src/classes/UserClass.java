@@ -7,17 +7,20 @@ public class UserClass implements Serializable{
 	String mail;
 	String name;
 	ArrayList<EventClass> eventsCreated;
+	ArrayList<EventClass> eventsJoined;
 	
 	public UserClass(String n, String m) {
 		mail = m;
 		name = n;
 		eventsCreated = new ArrayList<EventClass>();
+		eventsJoined = new ArrayList<EventClass>();
 	}
 	
 	public UserClass(String m) {
 		mail = m;
 		name = "Unknown user";
 		eventsCreated = new ArrayList<EventClass>();
+		eventsJoined = new ArrayList<EventClass>();
 	}
 	
 	public String getName() {
@@ -80,11 +83,56 @@ public class UserClass implements Serializable{
 			return null;
 	}
 	
+	public EventClass getEventCreatedById(String id_s) {
+		int id = Integer.parseInt(id_s);
+		for (int i=0;i<eventsCreated.size();i++) {
+			if (eventsCreated.get(i).hashCode() == id)
+				return eventsCreated.get(i);
+		}
+		return null;
+	}
+	
 	public boolean containsEventCreated(EventClass event) {
 		return event.isInArray(eventsCreated);
 	}
 	
 	public int getNumberOfEventsCreated() {
 		return eventsCreated.size();
+	}
+	
+	public void addEventJoined(EventClass newEvent) {
+		if(!newEvent.isInArray(eventsJoined)) {
+			eventsJoined.add(newEvent);
+		}
+	}
+	
+	public void removeEventJoined(EventClass oldEvent) {
+		if(containsEventJoined(oldEvent)) {
+			eventsJoined.remove(oldEvent.indexInArray(eventsJoined));
+		}
+	}
+	
+	public EventClass getEventJoined(int i) {
+		if (i < eventsJoined.size())
+			return eventsJoined.get(i);
+		else
+			return null;
+	}
+	
+	public EventClass getEventJoinedById(String id_s) {
+		int id = Integer.parseInt(id_s);
+		for (int i=0;i<eventsJoined.size();i++) {
+			if (eventsJoined.get(i).hashCode() == id)
+				return eventsJoined.get(i);
+		}
+		return null;
+	}
+	
+	public boolean containsEventJoined(EventClass event) {
+		return event.isInArray(eventsJoined);
+	}
+	
+	public int getNumberOfEventsJoined() {
+		return eventsJoined.size();
 	}
 }
