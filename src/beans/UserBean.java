@@ -58,6 +58,10 @@ public class UserBean implements Serializable {
 		return user.getEventCreatedById(id);
 	}
 	
+	public EventClass getEventCreatedById(int id) {
+		return user.getEventCreatedById(id);
+	}
+	
 	public int getNumberOfEventsCreated() {
 		return user.getNumberOfEventsCreated();
 	}
@@ -75,6 +79,10 @@ public class UserBean implements Serializable {
 	}
 	
 	public EventClass getEventJoinedById(String id) {
+		return user.getEventJoinedById(id);
+	}
+	
+	public EventClass getEventJoinedById(int id) {
 		return user.getEventJoinedById(id);
 	}
 	

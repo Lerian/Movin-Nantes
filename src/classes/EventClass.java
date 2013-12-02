@@ -74,7 +74,7 @@ public class EventClass implements Serializable{
 		places--;
 	}
 	
-	public boolean isInArray(ArrayList<EventClass> array) {
+	/*public boolean isInArray(ArrayList<EventClass> array) {
 		for(int i=0;i<array.size();i++) {
 			if(sport.equals(array.get(i).getSport())
 					&&
@@ -86,9 +86,15 @@ public class EventClass implements Serializable{
 				return true;
 		}
 		return false;
+	}*/
+	public boolean isInArray(ArrayList<EventClass> array) {
+		for(int i=0;i<array.size();i++) {
+			if(this.hashCode() == array.get(i).hashCode())
+				return true;
+		}
+		return false;
 	}
-	
-	public int indexInArray(ArrayList<EventClass> array) {
+	/*public int indexInArray(ArrayList<EventClass> array) {
 		for(int i=0;i<array.size();i++) {
 			if(sport.equals(array.get(i).getSport())
 					&&
@@ -100,8 +106,14 @@ public class EventClass implements Serializable{
 				return i;
 		}
 		return -1;
+	}*/
+	public int indexInArray(ArrayList<EventClass> array) {
+		for(int i=0;i<array.size();i++) {
+			if(this.hashCode() == array.get(i).hashCode())
+				return i;
+		}
+		return -1;
 	}
-	
 	public String toString() {
 		return "EventClass.toString to be implemented x)";
 	}

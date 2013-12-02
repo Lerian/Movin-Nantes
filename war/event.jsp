@@ -27,7 +27,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Test HTML Appli web</title>
+	<title>Informations sur l'évènement</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
@@ -94,9 +94,30 @@
 	              		Date : <%= event.getDateString() %><br>
 	              		Places restantes : <%= event.getPlaces() %><br>
 	              		<%= event.getDescription() %></p>
-		              	<a href="#" class="btn btn-primary">S'inscrire</a>
-		              	<% //TODO faire l'inscription 
-		              		//TODO faire le lien avec la carte%>
+	              		<%
+	              			if (user != null
+	              				&& 
+	              				(currentUser.getEventCreatedById(event.hashCode()) == null)) {
+	              		%>
+	              				<form method="post" action ="/home.jsp">
+   									<input type="hidden" name="eventID" value="<%= event.hashCode() %>"/>
+   									<%
+   										if (currentUser.getEventJoinedById(event.hashCode()) != null) {
+   									%>
+		   									<button type="submit" class="btn btn-danger">Désinscription</button>
+		   									<%
+   										} else {
+   											if (event.getPlaces() > 0)
+		   									%>
+		   									<button type="submit" class="btn btn-success">Inscription</button>
+		   									<%
+   										}
+		   									%>
+		              			</form>
+		              	<%
+	              			}
+		              	%>
+		              	<%//TODO faire le lien avec la carte%>
 					</div>
           		</div>
 			</div>

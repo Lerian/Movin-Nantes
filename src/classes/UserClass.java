@@ -92,6 +92,14 @@ public class UserClass implements Serializable{
 		return null;
 	}
 	
+	public EventClass getEventCreatedById(int id) {
+		for (int i=0;i<eventsCreated.size();i++) {
+			if (eventsCreated.get(i).hashCode() == id)
+				return eventsCreated.get(i);
+		}
+		return null;
+	}
+	
 	public boolean containsEventCreated(EventClass event) {
 		return event.isInArray(eventsCreated);
 	}
@@ -121,6 +129,14 @@ public class UserClass implements Serializable{
 	
 	public EventClass getEventJoinedById(String id_s) {
 		int id = Integer.parseInt(id_s);
+		for (int i=0;i<eventsJoined.size();i++) {
+			if (eventsJoined.get(i).hashCode() == id)
+				return eventsJoined.get(i);
+		}
+		return null;
+	}
+	
+	public EventClass getEventJoinedById(int id) {
 		for (int i=0;i<eventsJoined.size();i++) {
 			if (eventsJoined.get(i).hashCode() == id)
 				return eventsJoined.get(i);

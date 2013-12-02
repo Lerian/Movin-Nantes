@@ -52,9 +52,11 @@
 	    		if (currentUser.getEventJoinedById(request.getParameter("eventID")) != null) {
 	    			currentUser.removeEventJoined(currentUser.getEventJoinedById(request.getParameter("eventID")));
 	    			events.getEventById(request.getParameter("eventID")).addAPlace();
-	    		} else { // Joining it if the user has not already
-	    			currentUser.addEventJoined(events.getEventById(request.getParameter("eventID")));
-	    			events.getEventById(request.getParameter("eventID")).removeAPlace();
+	    		} else { // Joining it if the user has not already and places are available
+	    			if (events.getEventById(request.getParameter("eventID")).getPlaces() > 0) {
+	    				currentUser.addEventJoined(events.getEventById(request.getParameter("eventID")));
+	    				events.getEventById(request.getParameter("eventID")).removeAPlace();
+	    			}
 	    		}
 	    	}
 	    }
@@ -199,7 +201,9 @@
          					for(int i=0;i<events.getSize() || nbEvents == 10;i++) {
          						if ((currentUser.getEventJoinedById(String.valueOf(events.getEvent(i).hashCode())) == null)
          							&&
-         							(currentUser.getEventCreatedById(String.valueOf(events.getEvent(i).hashCode())) == null))
+         							(currentUser.getEventCreatedById(String.valueOf(events.getEvent(i).hashCode())) == null)
+         							&&
+         							(events.getEvent(i).getPlaces() > 0))
          						{
              						if (nbEvents > 0) {
   						%>
