@@ -51,6 +51,26 @@ public class UserBean implements Serializable {
 		user.removeSport(s);
 	}
 	
+	public int getNumberOfPlaces() {
+		return user.getNumberOfPlaces();
+	}
+	
+	public String getPlace(int i) {
+		return user.getPlace(i);
+	}
+	
+	public boolean favorsPlace(String s) {
+		return user.favorsPlace(s);
+	}
+	
+	public void addPlace(String s) {
+		user.addPlace(s);
+	}
+	
+	public void removePlace(String s) {
+		user.removePlace(s);
+	}
+	
 	public void setName(String n) {
 		user.setName(n);
 	}

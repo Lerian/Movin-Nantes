@@ -9,6 +9,7 @@ public class UserClass implements Serializable{
 	ArrayList<EventClass> eventsCreated;
 	ArrayList<EventClass> eventsJoined;
 	ArrayList<String> favoriteSports;
+	ArrayList<String> favoritePlaces;
 	
 	public UserClass(String n, String m) {
 		mail = m;
@@ -16,6 +17,7 @@ public class UserClass implements Serializable{
 		eventsCreated = new ArrayList<EventClass>();
 		eventsJoined = new ArrayList<EventClass>();
 		favoriteSports = new ArrayList<String>();
+		favoritePlaces = new ArrayList<String>();
 	}
 	
 	public UserClass(String m) {
@@ -24,6 +26,7 @@ public class UserClass implements Serializable{
 		eventsCreated = new ArrayList<EventClass>();
 		eventsJoined = new ArrayList<EventClass>();
 		favoriteSports = new ArrayList<String>();
+		favoritePlaces = new ArrayList<String>();
 	}
 	
 	public String getName() {
@@ -60,6 +63,34 @@ public class UserClass implements Serializable{
 	public void removeSport(String s) {
 		if (favorsSport(s))
 			favoriteSports.remove(favoriteSports.indexOf(s.toLowerCase()));
+	}
+	
+	public int getNumberOfPlaces() {
+		return favoritePlaces.size();
+	}
+	
+	public String getPlace(int i) {
+		if (i < favoritePlaces.size() && i >= 0)
+			return favoritePlaces.get(i);
+		else
+			return null;
+	}
+	
+	public boolean favorsPlace(String s) {
+		for(int i = 0; i< favoritePlaces.size();i++)
+			if (favoritePlaces.get(i).toLowerCase().equals(s.toLowerCase()))
+				return true;
+		return false;
+	}
+	
+	public void addPlace(String s) {
+		if (!favorsPlace(s))
+			favoritePlaces.add(s.toLowerCase());
+	}
+	
+	public void removePlace(String s) {
+		if (favorsPlace(s))
+			favoritePlaces.remove(favoritePlaces.indexOf(s.toLowerCase()));
 	}
 	
 	public void setName(String n) {
