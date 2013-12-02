@@ -29,6 +29,13 @@
 		    users.getUser(user.getEmail()).setName(request.getParameter("nomUtilisateur"));
 		    currentUser.setUser(users.getUser(user.getEmail()), user.getEmail());
 		}
+		// Handling the sport given in parameter
+		// Adding it to the user's favorites if it already isn't
+		if (request.getParameter("addSport") != null && !request.getParameter("addSport").isEmpty())
+			currentUser.addSport(request.getParameter("addSport"));
+		// Removing it from the user's favorites if it already is into
+		if (request.getParameter("removeSport") != null)
+			currentUser.removeSport(request.getParameter("removeSport"));
 	} else {	// Go back to the index if the user isn't logged in
 		response.sendRedirect(userService.createLogoutURL("/index.jsp"));
 	}
@@ -128,13 +135,22 @@
              			<h3 class="panel-title">Mes sports favoris :</h3>
            			</div>
            			<div class="panel-body">
-             			<p></p>
-		  				<form class="form-inline" role="form">
-								<div class="form-group">
- 					 				<label class="sr-only">Sport</label>
-  									<input class="form-control" id="sport" type="text" placeholder="Sport">
-								</div>
-								<button type="submit" class="btn btn-success">Ajouter</button>
+           				<%
+           					for(int i=0;i<currentUser.getNumberOfSports();i++) {
+           				%>
+           						<form class="form-inline" method="post" action="/profile.jsp">
+       								<%= currentUser.getSport(i) %>
+									<input name="removeSport" type="hidden" value="<%= currentUser.getSport(i) %>">
+									<button type="submit" class="btn btn-danger flt-right">Enlever</button>
+								</form>
+           				<%
+           					}
+           				%>
+		  				<form class="form-inline" method="post" action="/profile.jsp">
+		  					<div class="form-group">
+  								<input class="form-control" name="addSport" id="sport" type="text" placeholder="Sport">
+  							</div>
+							<button type="submit" class="btn btn-success">Ajouter</button>
 						</form>
            			</div>
       			</div>

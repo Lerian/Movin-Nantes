@@ -1,6 +1,7 @@
 package beans;
 
 import java.io.Serializable;
+
 import classes.UserClass;
 import classes.EventClass;
 
@@ -28,6 +29,26 @@ public class UserBean implements Serializable {
 	
 	public String getMail() {
 		return user.getMail();
+	}
+	
+	public int getNumberOfSports() {
+		return user.getNumberOfSports();
+	}
+	
+	public String getSport(int i) {
+		return user.getSport(i);
+	}
+	
+	public boolean favorsSport(String s) {
+		return user.favorsSport(s);
+	}
+	
+	public void addSport(String s) {
+		user.addSport(s);
+	}
+	
+	public void removeSport(String s) {
+		user.removeSport(s);
 	}
 	
 	public void setName(String n) {

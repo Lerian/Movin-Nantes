@@ -8,12 +8,14 @@ public class UserClass implements Serializable{
 	String name;
 	ArrayList<EventClass> eventsCreated;
 	ArrayList<EventClass> eventsJoined;
+	ArrayList<String> favoriteSports;
 	
 	public UserClass(String n, String m) {
 		mail = m;
 		name = n;
 		eventsCreated = new ArrayList<EventClass>();
 		eventsJoined = new ArrayList<EventClass>();
+		favoriteSports = new ArrayList<String>();
 	}
 	
 	public UserClass(String m) {
@@ -21,6 +23,7 @@ public class UserClass implements Serializable{
 		name = "Unknown user";
 		eventsCreated = new ArrayList<EventClass>();
 		eventsJoined = new ArrayList<EventClass>();
+		favoriteSports = new ArrayList<String>();
 	}
 	
 	public String getName() {
@@ -29,6 +32,34 @@ public class UserClass implements Serializable{
 	
 	public String getMail() {
 		return mail;
+	}
+	
+	public int getNumberOfSports() {
+		return favoriteSports.size();
+	}
+	
+	public String getSport(int i) {
+		if (i < favoriteSports.size() && i >= 0)
+			return favoriteSports.get(i);
+		else
+			return null;
+	}
+	
+	public boolean favorsSport(String s) {
+		for(int i = 0; i< favoriteSports.size();i++)
+			if (favoriteSports.get(i).toLowerCase().equals(s.toLowerCase()))
+				return true;
+		return false;
+	}
+	
+	public void addSport(String s) {
+		if (!favorsSport(s))
+			favoriteSports.add(s.toLowerCase());
+	}
+	
+	public void removeSport(String s) {
+		if (favorsSport(s))
+			favoriteSports.remove(favoriteSports.indexOf(s.toLowerCase()));
 	}
 	
 	public void setName(String n) {
