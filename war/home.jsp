@@ -203,7 +203,11 @@
          							&&
          							(currentUser.getEventCreatedById(String.valueOf(events.getEvent(i).hashCode())) == null)
          							&&
-         							(events.getEvent(i).getPlaces() > 0))
+         							(events.getEvent(i).getPlaces() > 0)
+         							&&
+         							((currentUser.favorsPlace(events.getEvent(i).getLieu()))
+         							||
+         							(currentUser.favorsSport(events.getEvent(i).getSport()))))
          						{
              						if (nbEvents > 0) {
   						%>
@@ -266,7 +270,7 @@
 	                		<input class="form-control" id="date" name="date" type="text" placeholder="Date">
 						</div> 
 						<div class="col-lg-6">
-	                		<input class="form-control" name="places" type="text" placeholder="Nombre de place">
+	                		<input class="form-control" name="places" type="text" placeholder="Nombre de places restantes">
 						</div><br><br>
 						<textarea class="form-control" name="description" rows="3">Descriptif</textarea>
 	        			<div class="modal-footer">

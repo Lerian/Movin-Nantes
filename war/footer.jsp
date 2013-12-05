@@ -35,8 +35,8 @@
        		Code source de l'application :
        		<a href="https://github.com/Lerian/Movin-Nantes">GitHub</a> 
 			| 
-			Plus d'informations sur :
-	  		<a href="http://lerian.github.io/Movin-Nantes/">Movin'Nantes Documentation</a> 
+			Plus d'informations :
+	  		<a href="http://lerian.github.io/Movin-Nantes/">Documentation</a> 
    		</p>
    	</footer>
 </body>
