@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.Properties" %>
+<%@ page import="javax.mail.Session" %>
 <%@ page import="com.google.appengine.api.users.User" %>
 <%@ page import="com.google.appengine.api.users.UserService" %>
 <%@ page import="com.google.appengine.api.users.UserServiceFactory" %>
@@ -13,6 +15,7 @@
 <%@ page import="com.google.appengine.api.datastore.PreparedQuery" %>
 <%@ page import="classes.UserClass" %>
 <%@ page import="classes.EventClass" %>
+<%@ page import="classes.Mailer" %>
 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
@@ -27,7 +30,18 @@
 	if (user != null) {
 		// Adding the user to the users' list, and putting him in the session bean (if necessary)
 		pageContext.setAttribute("user", user);
-	    users.addUser(new UserClass(user.getEmail()));
+	    if (users.addUser(new UserClass(user.getEmail()))) {
+	    	Properties props = new Properties();
+	    	Mailer newEvent = new Mailer(Session.getDefaultInstance(props, null),
+	    						"Bienvenue sur Movin'Nantes, le site d'organisation d'événements sportifs dans la ville de Nantes!"+
+	    						"Vous avez été inscrit automatiquement en vous connectant sur le site movinnantes.appspot.com, il est maintenant temps d'indiquer vos sports et lieux préférés pour pouvoir rejoindre et créer des événements."+
+	    						"Vous pouvez vous désinscrire à votre guise depuis votre profil sur le site. "+
+	    						"=============================================================================="+
+	    						"L'équipe de Movin'Nantes",
+	    						user.getEmail(),
+	    						user.getEmail(),
+	    						"Inscription sur Movin'Nantes!");
+	    }
 	    currentUser.setUser(users.getUser(user.getEmail()), user.getEmail());
 	    // Creating the event given in parameter if it is relevant
 	    if (request.getParameter("sport") != null &&

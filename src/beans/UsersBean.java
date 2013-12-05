@@ -12,10 +12,11 @@ public class UsersBean implements Serializable {
 		users = new ArrayList<UserClass>();
 	}
 	
-	public void addUser(UserClass newUser) {
+	public boolean addUser(UserClass newUser) {
 		if(!newUser.isInArray(users)) {
-			users.add(newUser);
+			return users.add(newUser);
 		}
+		return false;
 	}
 	
 	public void removeUser(UserClass ancientUser) {
