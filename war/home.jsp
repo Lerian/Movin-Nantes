@@ -281,7 +281,7 @@
 						</div><br><br>
 						<div class="col-lg-6">
 							<% //TODO gérer l'heure %>
-	                		<input class="form-control" id="date" name="date" type="text" placeholder="Date jj/mm/aaaa">
+	                		<input class="form-control" id="date" name="date" type="text" placeholder="Date jj-mm-aaaa">
 						</div> 
 						<div class="col-lg-6">
 	                		<input class="form-control" name="places" type="text" placeholder="Nombre de places restantes">
