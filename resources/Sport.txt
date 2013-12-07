@@ -1,3 +1,4 @@
 http://data.nantes.fr/donnees/detail/quartiers-de-la-ville-de-nantes/
 http://data.nantes.fr/donnees/detail/localisation-des-equipements-publics-relevant-du-theme-sports-loisirs-de-nantes-metropole/
 http://data.nantes.fr/donnees/detail/localisation-et-caracteristiques-des-parcs-et-jardins-de-nantes/
+http://data.nantes.fr/api/publication/24440040400129_NM_NM_00024/LOC_EQUIPUB_SPORT_NM_STBL/content?filter={%22$and%22:[{%22COMMUNE%22:%22NANTES%22},{%22STATUT%22:{%22$in%22:[%22D%C3%A9partement%22,%22Ville%20de%20Nantes%22,%22municipal%22,%22D%C3%A9partemental%22,%22Etat%22,%22R%C3%A9gion%22,%22Public%22]}}]}
