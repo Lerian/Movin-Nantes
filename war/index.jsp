@@ -67,11 +67,11 @@
              	         			}
          							nbEvents++;
              	   						%>
-									<p>Activité : <% out.print(events.getEvent(i).getSport()); %></p>
-	   								<p>Lieu : <% out.print(events.getEvent(i).getLieu()); %></p>
-	   								<p>Date : <% out.print(events.getEvent(i).getDateString()); %></p>
-	   								<p>Places restantes : <% out.print(events.getEvent(i).getPlaces()); %></p>
-	   								<p><% out.print(events.getEvent(i).getDescription()); %></p>
+									<p><span class="label label-default">Activité</span> : <% out.print(events.getEvent(i).getSport()); %></p>
+	   								<p><span class="label label-success">Lieu</span> : <% out.print(events.getEvent(i).getLieu()); %></p>
+	   								<p><span class="label label-info">Date</span> : <% out.print(events.getEvent(i).getDateString()); %></p>
+	   								<p><span class="label label-warning">Places restantes</span> : <% out.print(events.getEvent(i).getPlaces()); %></p>
+	   								<div class="panel panel-default"><div class="panel-body"><% out.print(events.getEvent(i).getDescription()); %></div></div>
 	   								<div class="row">
    										<div class="col-sm-4">
    											<form method="post" action="/event.jsp">

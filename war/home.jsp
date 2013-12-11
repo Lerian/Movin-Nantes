@@ -148,11 +148,11 @@
          				<%
          					for(int i=0;i<currentUser.getNumberOfEventsCreated();i++) {
    						%>
-								<p>Activité : <% out.print(currentUser.getEventCreated(i).getSport()); %></p>
-   								<p>Lieu : <% out.print(currentUser.getEventCreated(i).getLieu()); %></p>
-   								<p>Date : <% out.print(currentUser.getEventCreated(i).getDateString()); %></p>
-   								<p>Places restantes : <% out.print(currentUser.getEventCreated(i).getPlaces()); %></p>
-   								<p><% out.print(currentUser.getEventCreated(i).getDescription()); %></p>
+								<p><span class="label label-default">Activité</span> : <% out.print(events.getEvent(i).getSport()); %></p>
+	   							<p><span class="label label-success">Lieu</span> : <% out.print(events.getEvent(i).getLieu()); %></p>
+	   							<p><span class="label label-info">Date</span> : <% out.print(events.getEvent(i).getDateString()); %></p>
+	   							<p><span class="label label-warning">Places restantes</span> : <% out.print(events.getEvent(i).getPlaces()); %></p>
+	   								<div class="panel panel-default"><div class="panel-body"><% out.print(events.getEvent(i).getDescription()); %></div></div>
    								<form method="post" action="/event.jsp">
    									<input type="hidden" name="eventID" value="<%= currentUser.getEventCreated(i).hashCode() %>"/>
    									<button type="submit" class="btn btn-info">+ d'infos</button>
@@ -179,11 +179,11 @@
    									<%
          						}
    									%>
-								<p>Activité : <% out.print(currentUser.getEventJoined(i).getSport()); %></p>
-   								<p>Lieu : <% out.print(currentUser.getEventJoined(i).getLieu()); %></p>
-   								<p>Date : <% out.print(currentUser.getEventJoined(i).getDateString()); %></p>
-   								<p>Places restantes : <% out.print(currentUser.getEventJoined(i).getPlaces()); %></p>
-   								<p><% out.print(currentUser.getEventJoined(i).getDescription()); %></p>
+								<p><span class="label label-default">Activité</span> : <% out.print(events.getEvent(i).getSport()); %></p>
+	   							<p><span class="label label-success">Lieu</span> : <% out.print(events.getEvent(i).getLieu()); %></p>
+	   							<p><span class="label label-info">Date</span> : <% out.print(events.getEvent(i).getDateString()); %></p>
+	   							<p><span class="label label-warning">Places restantes</span> : <% out.print(events.getEvent(i).getPlaces()); %></p>
+	   								<div class="panel panel-default"><div class="panel-body"><% out.print(events.getEvent(i).getDescription()); %></div></div>
    								<div class="row">
    									<div class="col-sm-4">
    										<form method="post" action="/event.jsp">
@@ -230,11 +230,11 @@
              	         			}
          							nbEvents++;
              	   						%>
-									<p>Activité : <% out.print(events.getEvent(i).getSport()); %></p>
-	   								<p>Lieu : <% out.print(events.getEvent(i).getLieu()); %></p>
-	   								<p>Date : <% out.print(events.getEvent(i).getDateString()); %></p>
-	   								<p>Places restantes : <% out.print(events.getEvent(i).getPlaces()); %></p>
-	   								<p><% out.print(events.getEvent(i).getDescription()); %></p>
+									<p><span class="label label-default">Activité</span> : <% out.print(events.getEvent(i).getSport()); %></p>
+	   								<p><span class="label label-success">Lieu</span> : <% out.print(events.getEvent(i).getLieu()); %></p>
+	   								<p><span class="label label-info">Date</span> : <% out.print(events.getEvent(i).getDateString()); %></p>
+	   								<p><span class="label label-warning">Places restantes</span> : <% out.print(events.getEvent(i).getPlaces()); %></p>
+	   								<div class="panel panel-default"><div class="panel-body"><% out.print(events.getEvent(i).getDescription()); %></div></div>
 	   								<div class="row">
    										<div class="col-sm-4">
    											<form method="post" action="/event.jsp">
@@ -286,7 +286,7 @@
 						<div class="col-lg-6">
 	                		<input class="form-control" name="places" type="text" placeholder="Nombre de places restantes">
 						</div><br><br>
-						<textarea class="form-control" name="description" rows="3">Descriptif</textarea>
+						<textarea class="form-control" name="description" rows="3" placeholder="Descriptif"></textarea>
 	        			<div class="modal-footer">
       						<button class="btn btn-danger" data-dismiss="modal">Annuler</button>
 	      					<button type="submit" class="btn btn-primary">Ajouter !</button>

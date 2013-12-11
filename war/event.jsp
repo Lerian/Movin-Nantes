@@ -62,7 +62,7 @@
      			<%-- Buttons if a user is logged in --%>
      			<% if(user != null) { %>
        			<ul class="nav navbar-nav navbar-right">
-       				<li><a href="home.jsp" class="btn btn-warning btn-small btn-nav">Accueil</a></li>
+       				<li><a href="home.jsp" class="btn btn-primary btn-small btn-nav">Accueil</a></li>
 					<li>&nbsp;</li>
          			<li><a href="profile.jsp" class="btn btn-warning btn-small btn-nav">Profil</a></li>
 					<li>&nbsp;</li>
@@ -71,7 +71,7 @@
        			<%-- Buttons if no user is logged in --%>
        			<% } else { %>
        			<ul class="nav navbar-nav navbar-right">
-       				<li><a href="index.jsp" class="btn btn-warning btn-small btn-nav">Accueil</a></li>
+       				<li><a href="index.jsp" class="btn btn-primary btn-small btn-nav">Accueil</a></li>
 					<li>&nbsp;</li>
          			<li><a href="<%= userService.createLoginURL("/home.jsp") %>" class="btn btn-success btn-small btn-nav">Connection</a></li>
        			</ul>
@@ -89,11 +89,10 @@
 	              		<h3 class="panel-title">Evènement proposé par <%= event.getOrganisateur().getName() %> :</h3>
 		            </div>
 		            <div class="panel-body">
-	              		<p>Activité : <%= event.getSport() %><br>
-	              		Lieu : <%= event.getLieu() %><br>
-	              		Date : <%= event.getDateString() %><br>
-	              		Places restantes : <%= event.getPlaces() %><br>
-	              		<%= event.getDescription() %></p>
+	              		<p><span class="label label-default">Activité</span> : <%= event.getSport() %><br><br>
+	              		<span class="label label-success">Lieu</span> : <%= event.getLieu() %><br><br>
+	              		<span class="label label-info">Date</span> : <%= event.getDateString() %><br><br>
+	              		<span class="label label-warning">Places restantes</span> : <%= event.getPlaces() %>
 	              		<%
 	              			if (user != null
 	              				&& 
@@ -124,10 +123,10 @@
 			<div class="col-sm-4">
           		<div class="panel panel-default">
 	            	<div class="panel-heading">
-	              		<h3 class="panel-title">Carte :</h3>
+	              		<h3 class="panel-title">Descriptif :</h3>
 	            	</div>
 	            	<div class="panel-body">
-	              		<p style="text-align:center"><iframe width="300" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.fr/maps?f=q&amp;source=s_q&amp;hl=fr&amp;geocode=&amp;q=47.248810,+-1.564139&amp;aq=&amp;sll=47.22531,-1.554651&amp;sspn=0.019702,0.045447&amp;ie=UTF8&amp;hq=&amp;hnear=47.248810,+-1.564139&amp;t=m&amp;ll=47.212572,-1.557312&amp;spn=0.139927,0.205994&amp;z=11&amp;output=embed"></iframe></p>
+	              		<p><%= event.getDescription() %></p>
 	            	</div>
 	          	</div>
 	        </div>

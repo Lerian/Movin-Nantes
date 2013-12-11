@@ -84,7 +84,7 @@
         	</div>
         	<div class="navbar-collapse collapse">
           		<ul class="nav navbar-nav navbar-right">
-          			<li><a href="home.jsp" class="btn btn-warning btn-nav">Accueil</a></li>
+          			<li><a href="home.jsp" class="btn btn-primary btn-nav">Accueil</a></li>
 			  		<li>&nbsp;</li>
             		<li><a href="<%= userService.createLogoutURL("/index.jsp") %>" class="btn btn-danger btn-small btn-nav">Déconnexion</a></li>
           		</ul>
@@ -101,7 +101,7 @@
 					Pseudo affiché sur le site: 
 					<div class="form-group">
 			 			<label class="sr-only">Nom</label>
-						<input class="form-control" name="nomUtilisateur" type="text" value="<%out.print(currentUser.getName());%>">
+						<input class="form-control" name="nomUtilisateur" type="text" placeholder="<%out.print(currentUser.getName());%>">
 					</div>
 					<button type="submit" class="btn btn-info">Changer</button>
 				</form>
