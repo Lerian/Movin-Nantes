@@ -1,7 +1,7 @@
 Movin-Nantes
 ============
 
-La web application des évènements sportifs de Nantes, réalisé pour un projet étudiant de Master 1 ALMA, Université de Nantes.
+La web application des évènements sportifs de Nantes, réalisée pour un projet étudiant de Master 1 ALMA, Université de Nantes.
 
 Auteurs : Coraline MARIE, Vincent RAVENEAU et Quentin MORICEAU.
 
