@@ -98,7 +98,7 @@
 	              				&& 
 	              				(currentUser.getEventCreatedById(event.hashCode()) == null)) {
 	              		%>
-	              				<form method="post" action ="/home.jsp">
+	              				<form method="post" action ="/home.jsp" style="float:right">
    									<input type="hidden" name="eventID" value="<%= event.hashCode() %>"/>
    									<%
    										if (currentUser.getEventJoinedById(event.hashCode()) != null) {

@@ -183,10 +183,10 @@
    								<form method="post" action="/event.jsp" style="float:right">
    									<input type="hidden" name="eventID" value="<%= events.getEvent(i).hashCode() %>"/>
    									<button type="submit" class="btn btn-info btn-xs">+ d'infos</button>
-   								</form>
+   								</form><br>
    								<form method="post" action="/home.jsp">
    									<input type="hidden" name="eventID" value="<%= currentUser.getEventJoined(i).hashCode() %>"/>
-   									<button type="submit" class="btn btn-danger">Désinscription</button>
+   									<button type="submit" class="btn btn-danger btn-sm">Désinscription</button>
    								</form>
    						<%
          					}
@@ -226,10 +226,10 @@
    									<form method="post" action="/event.jsp" style="float:right">
    										<input type="hidden" name="eventID" value="<%= events.getEvent(i).hashCode() %>"/>
    										<button type="submit" class="btn btn-info btn-xs">+ d'infos</button>
-   									</form>
+   									</form><br>
    									<form method="post" action="/home.jsp">
    										<input type="hidden" name="eventID" value="<%= events.getEvent(i).hashCode() %>"/>
-   										<button type="submit" class="btn btn-success">Inscription</button>
+   										<button type="submit" class="btn btn-success btn-sm">Inscription</button>
   									</form>
    						<%
          						}
