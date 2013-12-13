@@ -69,17 +69,11 @@
              	   						%>
 									<p><span class="label label-default">Activité</span> : <% out.print(events.getEvent(i).getSport()); %></p>
 	   								<p><span class="label label-success">Lieu</span> : <% out.print(events.getEvent(i).getLieu()); %></p>
-	   								<p><span class="label label-info">Date</span> : <% out.print(events.getEvent(i).getDateString()); %></p>
-	   								<p><span class="label label-warning">Places restantes</span> : <% out.print(events.getEvent(i).getPlaces()); %></p>
-	   								<div class="panel panel-default"><div class="panel-body"><% out.print(events.getEvent(i).getDescription()); %></div></div>
-	   								<div class="row">
-   										<div class="col-sm-4">
-   											<form method="post" action="/event.jsp">
-   												<input type="hidden" name="eventID" value="<%= events.getEvent(i).hashCode() %>"/>
-   												<button type="submit" class="btn btn-info">+ d'infos</button>
-   											</form>
-   										</div>
-   									</div>
+	   								<p><span class="label label-warning">Date</span> : <% out.print(events.getEvent(i).getDateString()); %></p>
+   									<form method="post" action="/event.jsp" style="float:right">
+   										<input type="hidden" name="eventID" value="<%= events.getEvent(i).hashCode() %>"/>
+   										<button type="submit" class="btn btn-info btn-xs">+ d'infos</button>
+   									</form>
    						<%
          					}
          					if (events.getSize() == 0) {
