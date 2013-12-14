@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cronentries>
   <cron>
-    <url>/rerun</url>
+    <url>/rerun.jsp</url>
     <description>Triggers a dummy action to keep the app running and reduce the loading time at first access</description>
-    <schedule>every 15 minutes</schedule>
+    <schedule>every 5 minutes</schedule>
   </cron>
 </cronentries>
