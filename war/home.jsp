@@ -27,6 +27,7 @@
 <%
 	UserService userService = UserServiceFactory.getUserService();
 	User user = userService.getCurrentUser();
+	boolean badEventCreationArgs = false;
 	if (user != null) {
 		// Adding the user to the users' list, and putting him in the session bean (if necessary)
 		pageContext.setAttribute("user", user);
@@ -44,12 +45,11 @@
 	    }
 	    currentUser.setUser(users.getUser(user.getEmail()), user.getEmail());
 	    // Creating the event given in parameter if it is relevant
-	    if (request.getParameter("sport") != null &&
-	    	!request.getParameter("sport").isEmpty() &&
-	    	!request.getParameter("lieu").isEmpty() &&
-	    	!request.getParameter("date").isEmpty() &&
-	    	!request.getParameter("places").isEmpty() &&
-	    	!request.getParameter("description").isEmpty())
+	    if (EventClass.checkArgs(request.getParameter("sport"),
+	    	request.getParameter("lieu"),
+	    	request.getParameter("date"),
+	    	request.getParameter("places"),
+	    	request.getParameter("description")))
 	    {
 	    	EventClass ev = new EventClass(
 	    			request.getParameter("sport"),
@@ -106,6 +106,9 @@
 	    		    	}
 	    			}
 	    		}
+	    	} else { // Displaying a warning due to bad parameters for event creation
+		    	if (request.getParameter("sport") != null)
+	    			badEventCreationArgs = true;
 	    	}
 	    }
 	} else {	// Go back to the index if the user isn't logged in
@@ -166,6 +169,22 @@
 			%>
 			<div class="row">
 				<p class="text-center"><a href="profile.jsp" class="btn btn-warning btn-nav">Attention! Votre pseudo est toujours le pseudo par défaut, vous devriez le changer dans votre profil !</a></p>
+			</div>
+			<hr>
+			<%
+			}
+			// Affichage d'un avertissement si les arguments de création d'événement sont mauvais
+			if(badEventCreationArgs) {
+			%>
+			<div class="row">
+				<p class="text-center">Les arguments de création d'événement sont erronés.</p>
+				<p class="text-center">Veuillez réessayer en vérifiant les points suivants:</p>
+				<ul class="text-center">
+					<li> Tous les champs sont remplis, même la description </li>
+					<li> La date est sélectionnée sur le calendrier affiché </li>
+					<li> Le nombre de place est un nombre écrit avec des chiffres </li>
+					<li> Le nombre de place est supérieur à 0 </li>
+				</ul>
 			</div>
 			<hr>
 			<%

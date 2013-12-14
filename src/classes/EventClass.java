@@ -121,4 +121,33 @@ public class EventClass implements Serializable{
 	public String toString() {
 		return "EventClass.toString to be implemented x)";
 	}
+	
+	public static boolean checkArgs(String s, String l, String da, String p, String de) {
+		int i;
+		try {
+			i = Integer.parseInt(p);
+		} catch (Exception e) {
+			i = -1;
+			p = "";
+		}
+		try {
+			String day[] = da.split("-");
+			int a = Integer.parseInt(day[0]);
+			a = Integer.parseInt(day[1]);
+			a = Integer.parseInt(day[2]);
+		} catch (Exception e) {
+			da = "";
+		}
+		return (s != null &&		//sport défini
+				!s.isEmpty() &&
+				l != null &&		//lieu défini
+				!l.isEmpty() &&
+				p != null &&		//nbr de places défini
+				!p.isEmpty() &&
+				i > 0 &&			//nbr de places valide
+				da != null &&		//date valide
+				!da.isEmpty() &&
+				de != null &&		//description définie	
+				!de.isEmpty());			
+	}
 }
