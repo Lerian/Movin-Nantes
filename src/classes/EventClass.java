@@ -59,7 +59,11 @@ public class EventClass implements Serializable{
 	public EventClass(String s, String l, String p, String da, String de, UserClass o) {
 		sport = s;
 		lieu = l;
-		places = Integer.parseInt(p);
+		try {
+			places = Integer.signum(Integer.parseInt(p))*Integer.parseInt(p);
+		} catch (NumberFormatException e) {
+			places = 0;
+		}
 		String day[] = da.split("-");
 		date = new GregorianCalendar(Integer.parseInt(day[2]),Integer.parseInt(day[1])-1,Integer.parseInt(day[0]));
 		description = de;

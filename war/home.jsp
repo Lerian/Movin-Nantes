@@ -33,10 +33,10 @@
 	    if (users.addUser(new UserClass(user.getEmail()))) {
 	    	Properties props = new Properties();
 	    	Mailer newEvent = new Mailer(Session.getDefaultInstance(props, null),
-	    						"Bienvenue sur Movin'Nantes, le site d'organisation d'événements sportifs dans la ville de Nantes!"+
-	    						"Vous avez été inscrit automatiquement en vous connectant sur le site movinnantes.appspot.com, il est maintenant temps d'indiquer vos sports et lieux préférés pour pouvoir rejoindre et créer des événements."+
-	    						"Vous pouvez vous désinscrire à votre guise depuis votre profil sur le site. "+
-	    						"=============================================================================="+
+	    						"Bienvenue sur Movin'Nantes, le site d'organisation d'événements sportifs dans la ville de Nantes!"+System.getProperty("line.separator")+
+	    						"Vous avez été inscrit automatiquement en vous connectant sur le site movinnantes.appspot.com, il est maintenant temps d'indiquer vos sports et lieux préférés pour pouvoir rejoindre et créer des événements."+System.getProperty("line.separator")+
+	    						"Vous pouvez vous désinscrire à votre guise depuis votre profil sur le site. "+System.getProperty("line.separator")+
+	    						"=============================================================================="+System.getProperty("line.separator")+
 	    						"L'équipe de Movin'Nantes",
 	    						user.getEmail(),
 	    						user.getEmail(),
@@ -60,16 +60,50 @@
 	    			users.getUser(user.getEmail()));
 	    	events.addEvent(ev);
 	    	currentUser.addEventCreated(ev);
+	    	Properties props = new Properties();
+	    	Mailer newEvent = new Mailer(Session.getDefaultInstance(props, null),
+	    						"Votre événement a bien été créé sur Movin'Nantes"+System.getProperty("line.separator")+
+	    						"=============================================================================="+System.getProperty("line.separator")+
+	    						"L'équipe de Movin'Nantes",
+	    						user.getEmail(),
+	    						user.getEmail(),
+	    						"Evénement créé sur Movin'Nantes");
 	    } else { // Handling the existing event given in parameter
 	    	if (request.getParameter("eventID") != null) {
 	    		// Leaving it if the user has already joined
 	    		if (currentUser.getEventJoinedById(request.getParameter("eventID")) != null) {
 	    			currentUser.removeEventJoined(currentUser.getEventJoinedById(request.getParameter("eventID")));
 	    			events.getEventById(request.getParameter("eventID")).addAPlace();
+	    			Properties props = new Properties();
+	    	    	Mailer leaveEvent = new Mailer(Session.getDefaultInstance(props, null),
+	    	    						"Votre départ d'un événement sur Movin'Nantes a bien été pris en compte."+System.getProperty("line.separator")+
+	    	    						"=============================================================================="+System.getProperty("line.separator")+
+	    	    						"L'équipe de Movin'Nantes",
+	    	    						user.getEmail(),
+	    	    						user.getEmail(),
+	    	    						"Evénement quitté sur Movin'Nantes");
 	    		} else { // Joining it if the user has not already and places are available
 	    			if (events.getEventById(request.getParameter("eventID")).getPlaces() > 0) {
 	    				currentUser.addEventJoined(events.getEventById(request.getParameter("eventID")));
 	    				events.getEventById(request.getParameter("eventID")).removeAPlace();
+	    				Properties props = new Properties();
+	    		    	Mailer joinEvent = new Mailer(Session.getDefaultInstance(props, null),
+	    		    						"Votre inscription à un événement sur Movin'Nantes a bien été pris en compte."+System.getProperty("line.separator")+
+	    		    						"=============================================================================="+System.getProperty("line.separator")+
+	    		    						"L'équipe de Movin'Nantes",
+	    		    						user.getEmail(),
+	    		    						user.getEmail(),
+	    		    						"Evénement rejoint sur Movin'Nantes");
+	    		    	if (events.getEventById(request.getParameter("eventID")).getPlaces() == 0 ) {
+	    		    		props = new Properties();
+	    			    	Mailer fullEvent = new Mailer(Session.getDefaultInstance(props, null),
+	    			    						"Un de vos événements sur Movin'Nantes est complet. Félicitations!"+System.getProperty("line.separator")+
+	    			    						"=============================================================================="+System.getProperty("line.separator")+
+	    			    						"L'équipe de Movin'Nantes",
+	    			    						events.getEventById(request.getParameter("eventID")).getOrganisateur().getMail(),
+	    			    						events.getEventById(request.getParameter("eventID")).getOrganisateur().getMail(),
+	    			    						"Evénement complet sur Movin'Nantes");
+	    		    	}
 	    			}
 	    		}
 	    	}
